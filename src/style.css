@@ -1,3 +1,11 @@
+:root {
+  --header-height: 50px;
+  --pri-font-color: #202020;
+  --sec-font-color: #666666;
+
+  --task-divider-color: #d4d4d4;
+}
+
 *,
 *::before,
 *::after {
@@ -8,11 +16,14 @@
   margin: 0;
   padding: 0;
   font: inherit;
-  font-family: sans-serif;
+  font-family: -apple-system, system-ui, sans-serif;
 }
 
 body {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 img,
@@ -21,4 +32,114 @@ svg,
 video {
   display: block;
   max-width: 100%;
+}
+
+/*
+  ----- HEADER -----
+*/
+
+.header {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+}
+
+.header__toggle-sidebar-btn {
+  margin-left: 20px;
+}
+
+/*
+  ----- MAIN -----
+*/
+
+.main {
+  padding: 0 50px;
+  height: 100%;
+  color: var(--pri-font-color);
+}
+
+/*
+  ----- SECTION LIST -----
+*/
+
+.section__title {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.section-list {
+  list-style-type: none;
+}
+
+.section-list__task {
+  display: flex;
+  gap: 10px;
+}
+
+.task__toggle-task-complete-btn {
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  border: 1px solid gray;
+  background-color: white;
+}
+
+.task__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task__name {
+  font-size: 14px;
+}
+
+.task__description {
+  font-size: 12px;
+  color: var(--sec-font-color);
+}
+
+.task__due-date {
+  font-size: 12px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.due-date__icon {
+  height: 12px;
+  width: 12px;
+}
+
+.section-list__task-divider {
+  color: var(--task-divider-color);
+  background-color: var(--task-divider-color);
+  border: none;
+  height: 1px;
+  margin: 10px 0;
+}
+
+/*
+  ----- ADD TASK BUTTON -----
+*/
+
+.section-list__add-task-btn {
+  color: gray;
+  font-size: 14px;
+  display: flex;
+  gap: 10px;
+  border: none;
+  background-color: white;
+  align-items: center;
+}
+
+.section-list__add-task-btn:hover {
+  cursor: pointer;
+  color: #495e71;
+}
+
+.add-task-btn__img {
+  height: 18px;
+  width: 18px;
 }

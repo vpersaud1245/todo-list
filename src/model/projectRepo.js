@@ -15,8 +15,20 @@ const getProjectIndexfromName = (projectName) => {
   return projects.map((project) => project.projectName).indexOf(projectName);
 };
 
+const getProjectFromName = (projectName) => {
+  let projectIndex = getProjectIndexfromName(projectName);
+  if (projectIndex > -1) {
+    return projects[projectIndex];
+  }
+};
+
 const viewProjectRepo = () => {
   console.log(projects);
 };
 
-export { addProjectToRepo, removeProjectFromRepo, viewProjectRepo };
+export {
+  addProjectToRepo,
+  removeProjectFromRepo,
+  viewProjectRepo,
+  getProjectFromName,
+};
