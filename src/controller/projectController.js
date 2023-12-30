@@ -5,8 +5,10 @@ import { convertTaskToHTML } from "./taskController";
 const getHTMLTaskElements = (projectName) => {
   let project = projectRepo.getProjectFromName(projectName);
   let projectTaskList = project.getTaskList();
-  let htmlTaskList = convertTaskListToHtml(projectTaskList);
-  return htmlTaskList;
+  if (projectTaskList.length > 0) {
+    let htmlTaskList = convertTaskListToHtml(projectTaskList);
+    return htmlTaskList;
+  }
 };
 
 const convertTaskListToHtml = (taskList) => {

@@ -17,12 +17,14 @@ export const renderProjectSection = (projectName) => {
 
   // APPEND TASK ELEMENTS
   let taskElements = getHTMLTaskElements(projectName);
-  taskElements.forEach((taskElement) => {
-    sectionList.append(taskElement);
-    const taskDivider = document.createElement("hr");
-    taskDivider.classList.add("section-list__task-divider");
-    sectionList.append(taskDivider);
-  });
+  if (taskElements !== undefined) {
+    taskElements.forEach((taskElement) => {
+      sectionList.append(taskElement);
+      const taskDivider = document.createElement("hr");
+      taskDivider.classList.add("section-list__task-divider");
+      sectionList.append(taskDivider);
+    });
+  }
 
   const addTaskBtn = document.createElement("button");
   addTaskBtn.classList.add("section-list__add-task-btn");
