@@ -9,6 +9,58 @@
     <header class="header">
       <button class="header__toggle-sidebar-btn">O</button>
     </header>
-    <main class="main"></main>
+    <main class="main">
+      <!-- <div class="section" id="Inbox">
+        <h2 class="section__title">Inbox</h2>
+        <ul class="section-list"></ul>
+        <button class="section-list__add-task-btn">
+          <img
+            class="add-task-btn__img"
+            src="http://localhost:3000/26cb1325b82473bc9592.svg"
+            alt="plus-sign"
+          /><span class="add-task-btn__text">Add task</span>
+        </button> -->
+
+        <form action="javascript:void(0);" class="add-task-form">
+          <input
+            type="text"
+            class="add-task-form__input add-task-form__input--name"
+            placeholder="Task Name"
+          />
+          <input
+            type="text"
+            class="add-task-form__input add-task-form__input--description"
+            placeholder="Description"
+          />
+          <div class="add-task-form__middle-section">
+            <input
+              type="date"
+              class="add-task-form__input--due-date"
+              id="due-date-input"
+              placeholder="Due Date"
+            />
+            <select
+              class="add-task-form__input--priority-selector"
+              name="add-form-input__priority-selector"
+            >
+              <option value="">Priority</option>
+            </select>
+          </div>
+          <hr class="add-task-form__divider">
+            <div class="add-task-form__bottom-section">
+              <select
+                class="add-task-form__input add-task-form__input--project-selector"
+                name="add-form-input__project-selector"
+              >
+                <option value="">Inbox</option>
+              </select>
+              <div class="add-task-form__submit-buttons">
+              <button class="submit-buttons__button submit-buttons__button--cancel"><img class="cancel-button__icon"src="https://www.svgrepo.com/show/447576/cancel.svg" alt="cancel-icon"></button>
+              <button class="submit-buttons__button submit-buttons__button--submit"type="submit"><img class="submit-button__icon"src="https://www.svgrepo.com/show/533310/send-alt-1.svg" alt="send-icon"></button>
+                        </div>
+            </div>
+        </form>
+      </div>
+    </main>
   </body>
 </html>

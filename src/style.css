@@ -4,6 +4,7 @@
   --sec-font-color: #666666;
 
   --task-divider-color: #d4d4d4;
+  --form-border-color: #e6e6e6;
 }
 
 *,
@@ -143,3 +144,109 @@ video {
   height: 18px;
   width: 18px;
 }
+
+/*
+  ----- ADD TASK FORM -----
+*/
+
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+  color: #e6e6e6;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--sec-font-color);
+  border-radius: 10px;
+}
+
+.add-task-form__input {
+  border: none;
+  outline: none;
+}
+
+.add-task-form__input--name {
+  font-size: 14px;
+}
+
+.add-task-form__input--description {
+  font-size: 13px;
+}
+
+/* ----- ADD TASK FORM MIDDLE ------ */
+.add-task-form__middle-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--sec-font-color);
+}
+
+.add-task-form__middle-section > * {
+  width: 88px;
+  height: 28px;
+  font-size: 13px;
+  border: 1px solid var(--form-border-color);
+  border-radius: 5px;
+  padding: 0 6px;
+}
+
+.add-task-form__input--due-date {
+  font-size: 9px;
+}
+
+/* ----- ADD TASK FORM BOTTOM ----- */
+.add-task-form__divider {
+  color: var(--form-border-color);
+  background-color: var(--form-border-color);
+  border: none;
+  height: 1px;
+  margin: 0 -10px;
+}
+
+.add-task-form__bottom-section {
+  display: flex;
+  font-size: 13px;
+}
+
+.add-task-form__input--project-selector {
+  height: 32px;
+  width: 108px;
+  padding: 0 8px;
+}
+
+.add-task-form__submit-buttons {
+  display: flex;
+  font-size: 13px;
+  margin-left: auto;
+  gap: 10px;
+}
+
+.submit-buttons__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  height: 32px;
+  width: 32px;
+}
+
+.submit-buttons__button--cancel {
+  background-color: #f5f5f5;
+}
+
+.submit-buttons__button--submit {
+  background-color: #a4a9b0;
+}
+
+.submit-button__icon {
+  height: 20px;
+  width: 20px;
+}
+
+.cancel-button__icon {
+  height: 20px;
+  width: 20px;
+}
+
+/* ----- ADD TASK FORM END ----- */
