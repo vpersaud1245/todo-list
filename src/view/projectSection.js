@@ -1,22 +1,26 @@
 import addBtnSVG from "../assets/add-btn-icon.svg";
 import addBtnSVGWhite from "../assets/add-btn-icon--white.svg";
 import { getHTMLTaskElements } from "../controller/projectController";
+import { renderAddTaskForm } from "./addTaskForm";
 
 export const renderProjectSection = (projectName) => {
+  // GET MAIN ELEMENT
   const main = document.querySelector(".main");
 
+  // CREATE PROJECT SECTION
   const section = document.createElement("div");
   section.classList.add("section");
   section.id = projectName;
 
+  // CREATE SECTION TITLE
   const sectionTitle = document.createElement("h2");
   sectionTitle.classList.add("section__title");
   sectionTitle.textContent = projectName;
 
+  // CREATE SECTION LIST
   const sectionList = document.createElement("ul");
   sectionList.classList.add("section-list");
-
-  // APPEND TASK ELEMENTS
+  // APPEND TASK ELEMENTS TO LIST
   let taskElements = getHTMLTaskElements(projectName);
   if (taskElements !== undefined) {
     taskElements.forEach((taskElement) => {
@@ -27,16 +31,22 @@ export const renderProjectSection = (projectName) => {
     });
   }
 
+  // CREATE ADD TASK BUTTON
   const addTaskBtn = document.createElement("button");
   addTaskBtn.classList.add("section-list__add-task-btn");
   const addTaskBtnImg = document.createElement("img");
   addTaskBtnImg.classList.add("add-task-btn__img");
   addTaskBtnImg.src = addBtnSVG;
   addTaskBtnImg.alt = "plus-sign";
-  addBtnIconHoverStyle(addTaskBtn, addTaskBtnImg);
   const addTaskBtnText = document.createElement("span");
   addTaskBtnText.classList.add("add-task-btn__text");
   addTaskBtnText.textContent = "Add task";
+
+  // ADD BTN HOVER AND CLICK HANDLERS
+  addBtnIconHoverStyle(addTaskBtn, addTaskBtnImg);
+  addTaskBtn.onclick = (e) => {
+    handleAddTaskBtnClick(e, section);
+  };
 
   addTaskBtn.append(addTaskBtnImg, addTaskBtnText);
 
@@ -44,6 +54,9 @@ export const renderProjectSection = (projectName) => {
   main.append(section);
 };
 
+/*
+  ----- ADD TASK BTN EVENT HANDLERS -----
+*/
 const addBtnIconHoverStyle = (addTaskBtn, addTaskBtnImg) => {
   addTaskBtn.onmouseover = (e) => {
     addTaskBtnImg.src = addBtnSVGWhite;
@@ -54,4 +67,10 @@ const addBtnIconHoverStyle = (addTaskBtn, addTaskBtnImg) => {
   };
 };
 
-const handleAddTaskBtnClick = () => {};
+const handleAddTaskBtnClick = (e, section) => {
+  let addTaskBtn = e.currentTarget;
+  console.log(addTaskBtn);
+  section.removeChild(addTaskBtn);
+  let addTaskForm = renderAddTaskForm();
+  section.append(addTaskForm);
+};

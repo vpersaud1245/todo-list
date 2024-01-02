@@ -1,12 +1,9 @@
-import { format } from "date-fns";
+import { add, format } from "date-fns";
 import * as projectController from "../controller/projectController";
 import cancelButtonImg from "../assets/cancel-icon.svg";
 import submitButtonImg from "../assets/submit-icon.svg";
 
 export const renderAddTaskForm = () => {
-  // GET MAIN ELEMENT
-  const main = document.querySelector(".main");
-
   // CREATE FORM ELEMENTS
   const addTaskForm = document.createElement("form");
   const formTopSection = createTopSection();
@@ -29,8 +26,7 @@ export const renderAddTaskForm = () => {
     formBottomSection
   );
 
-  // APPEND FORM TO MAIN ELEMENT
-  main.append(addTaskForm);
+  return addTaskForm;
 };
 
 const createTopSection = () => {
