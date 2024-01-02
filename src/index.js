@@ -3,17 +3,20 @@ import { createProject } from "./model/project";
 import * as projectRepo from "./model/projectRepo";
 import { createTask } from "./model/task";
 import { renderProjectSection } from "./view/projectSection";
+import { renderAddTaskForm } from "./view/addTaskForm";
 
 // CREATE AND ADD INBOX TO PROJECT REPO
 const inbox = createProject("Inbox");
 projectRepo.addProjectToRepo(inbox);
+projectRepo.addProjectToRepo(createProject("Chores"));
 
 //TEST DATA
 let washCar = createTask("Wash Car", undefined, "2023-12-12");
 inbox.addTask(washCar);
 inbox.addTask(createTask("Clean House", "Dust House", "2023-28-12"));
 
-renderProjectSection("Inbox");
+// renderProjectSection("Inbox");
+renderAddTaskForm();
 
 /**
  * Add form to create task

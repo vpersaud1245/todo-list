@@ -22,13 +22,13 @@ const getProjectFromName = (projectName) => {
   }
 };
 
-const viewProjectRepo = () => {
-  console.log(projects);
+const getAllProjects = () => {
+  return projects;
 };
 
 export {
   addProjectToRepo,
   removeProjectFromRepo,
-  viewProjectRepo,
   getProjectFromName,
+  getAllProjects,
 };

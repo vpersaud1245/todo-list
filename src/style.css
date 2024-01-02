@@ -159,6 +159,12 @@ video {
   border-radius: 10px;
 }
 
+.add-task-form__top-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .add-task-form__input {
   border: none;
   outline: none;
@@ -192,6 +198,12 @@ video {
 
 .add-task-form__input--due-date {
   font-size: 9px;
+  color: var(--sec-font-color);
+}
+
+.add-task-form__input--priority-selector {
+  font-size: 13px;
+  color: var(--sec-font-color);
 }
 
 /* ----- ADD TASK FORM BOTTOM ----- */
@@ -212,6 +224,8 @@ video {
   height: 32px;
   width: 108px;
   padding: 0 8px;
+  font-size: 13px;
+  color: var(--sec-font-color);
 }
 
 .add-task-form__submit-buttons {
