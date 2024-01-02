@@ -22,6 +22,11 @@ const convertTaskListToHtml = (taskList) => {
   return htmlTaskList;
 };
 
+const addTaskToProject = (task, projectName) => {
+  let selectedProject = projectRepo.getProjectFromName(projectName);
+  selectedProject.addTask(task);
+};
+
 /**
  * Returns an array of project names
  */
@@ -31,4 +36,13 @@ const getProjectNames = () => {
   return projectNames;
 };
 
-export { getHTMLTaskElements, getProjectNames };
+const getAllProjects = () => {
+  return projectRepo.getAllProjects();
+};
+
+export {
+  getHTMLTaskElements,
+  getProjectNames,
+  addTaskToProject,
+  getAllProjects,
+};

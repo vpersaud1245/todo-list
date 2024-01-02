@@ -5,6 +5,8 @@
 
   --task-divider-color: #d4d4d4;
   --form-border-color: #e6e6e6;
+  --form-submit-btn-clr: #a4a9b0;
+  --form-submit-btn-validation-clr: #4a5462;
 }
 
 *,
@@ -255,7 +257,7 @@ video {
 }
 
 .submit-buttons__button--submit {
-  background-color: #a4a9b0;
+  background-color: var(--form-submit-btn-clr);
 }
 
 .submit-button__icon {

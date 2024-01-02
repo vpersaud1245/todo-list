@@ -23,7 +23,7 @@ export const convertTaskToHTML = (task) => {
   }
 
   // TASK DESCRIPTION ELEMENT
-  if (task.taskDescription !== undefined) {
+  if (task.taskDescription !== "") {
     const taskDescriptionElement = document.createElement("p");
     taskDescriptionElement.classList.add("task__description");
     taskDescriptionElement.textContent = task.taskDescription;
@@ -31,7 +31,7 @@ export const convertTaskToHTML = (task) => {
   }
 
   // TASK DUE DATE ELEMENT
-  if (task.taskDueDate !== undefined) {
+  if (task.taskDueDate !== "") {
     const taskDueDateElement = document.createElement("div");
     taskDueDateElement.classList.add("task__due-date");
 
@@ -48,6 +48,8 @@ export const convertTaskToHTML = (task) => {
     taskDueDateElement.append(dueDateIcon, dueDateText);
     taskInfoElement.append(taskDueDateElement);
   }
+
+  // TASK PRIORITY
 
   // APPEND ELEMENTS
   taskElement.append(toggleCompleteBtn, taskInfoElement);

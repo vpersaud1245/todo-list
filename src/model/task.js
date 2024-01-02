@@ -1,10 +1,6 @@
-const taskProto = {
-  getTaskName() {
-    return this.taskName;
-  },
-};
+const taskProto = {};
 
-function createTask(name, description, dueDate) {
+function createTask(name, description, dueDate, priority) {
   return Object.create(taskProto, {
     taskName: {
       value: name,
@@ -14,6 +10,9 @@ function createTask(name, description, dueDate) {
     },
     taskDueDate: {
       value: dueDate,
+    },
+    taskPriority: {
+      value: priority,
     },
   });
 }

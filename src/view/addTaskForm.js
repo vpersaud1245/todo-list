@@ -2,6 +2,8 @@ import { add, format } from "date-fns";
 import * as projectController from "../controller/projectController";
 import cancelButtonImg from "../assets/cancel-icon.svg";
 import submitButtonImg from "../assets/submit-icon.svg";
+import { createAddTaskBtn, reloadProjectSection } from "./projectSection";
+import { createTask } from "../model/task";
 
 export const renderAddTaskForm = () => {
   // CREATE FORM ELEMENTS
@@ -26,9 +28,21 @@ export const renderAddTaskForm = () => {
     formBottomSection
   );
 
+  // ADD FORM SUBMIT HANDLER
+  addTaskForm.onsubmit = (e) => {
+    formSubmitBtnOnClickHandler();
+  };
+
   return addTaskForm;
 };
 
+/*
+  ------ CREATE FORM SECTIONS ------
+*/
+
+/*
+  ----- TOP SECTION -----
+*/
 const createTopSection = () => {
   // CREATE SECTION CONTAINER
   const formTopSection = document.createElement("div");
@@ -43,6 +57,10 @@ const createTopSection = () => {
   );
   taskNameInput.placeholder = "Task Name";
 
+  // ADD TASK NAME INPUT HANDLERS
+  taskNameInput.oninput = (e) => {
+    taskNameOnInputHandler(e);
+  };
   // CREATE TASK DESCRIPTION INPUT
   const taskDescriptionInput = document.createElement("input");
   taskDescriptionInput.type = "text";
@@ -58,6 +76,28 @@ const createTopSection = () => {
   return formTopSection;
 };
 
+// FORM VALIDATION UTLITIY FUNCTION
+/**
+ * Update submit btn background color when name is entered
+ * to show form validation
+ */
+const taskNameOnInputHandler = (e) => {
+  const taskNameInput = e.currentTarget;
+  const formSubmitBtn = document.querySelector(
+    ".submit-buttons__button--submit"
+  );
+  if (taskNameInput.value != "") {
+    formSubmitBtn.style.backgroundColor =
+      "var(--form-submit-btn-validation-clr)";
+    return;
+  }
+  formSubmitBtn.style.backgroundColor = "var(--form-submit-btn-clr)";
+  return;
+};
+
+/*
+  ------ MIDDLE SECTION -----
+*/
 const createMiddleSection = () => {
   // CREATE SECTION CONTAINER
   const formMiddleSection = document.createElement("div");
@@ -71,7 +111,6 @@ const createMiddleSection = () => {
 
   // DEFAULT DUE DATE VALUE TO CURRENT DATE
   let currDateFormatted = format(new Date(), "yyyy-MM-dd");
-  taskDueDateInput.value = currDateFormatted;
 
   // ONLY ALLOW SELECTION FROM CURRENT DATE AND ON
   taskDueDateInput.min = currDateFormatted;
@@ -98,6 +137,9 @@ const createMiddleSection = () => {
   return formMiddleSection;
 };
 
+/*
+  ----- BOTTOM SECTION -----
+*/
 const createBottomSection = () => {
   // CREATE SECTION ELEMENT
   const formBottomSection = document.createElement("div");
@@ -142,8 +184,14 @@ const createSubmitButtons = () => {
   cancelButtonIcon.alt = "cancel_icon";
   cancelButton.append(cancelButtonIcon);
 
+  // ADD CANCEL BUTTON CLICK HANDLER
+  cancelButton.onclick = (e) => {
+    cancelBtnOnClickHandler();
+  };
+
   // CREATE SUBMIT BUTTON
   const submitButton = document.createElement("button");
+  submitButton.type = "submit";
   submitButton.classList.add(
     "submit-buttons__button",
     "submit-buttons__button--submit"
@@ -164,4 +212,57 @@ const createProjectSelectorOption = (projectName) => {
   projectOption.value = projectName;
   projectOption.innerHTML = projectName;
   return projectOption;
+};
+
+// ----- FORM CANCEL BTN HANDLER -----
+
+const cancelBtnOnClickHandler = () => {
+  const addTaskForm = document.querySelector(".add-task-form");
+  addTaskForm.remove();
+  const addTaskBtn = createAddTaskBtn();
+  let section = document.querySelector(".section");
+  section.append(addTaskBtn);
+};
+
+// ----- FORM SUBMIT BTN HANDLER -----
+const formSubmitBtnOnClickHandler = () => {
+  //CACHE DOM
+  let taskName = document.querySelector(".add-task-form__input--name").value;
+  let taskDescription = document.querySelector(
+    ".add-task-form__input--description"
+  ).value;
+  let taskDueDate = document.querySelector(
+    ".add-task-form__input--due-date"
+  ).value;
+  let taskPriority = document.querySelector(
+    ".add-task-form__input--priority-selector"
+  ).value;
+  let selectedProject = document.querySelector(
+    ".add-task-form__input--project-selector"
+  ).value;
+
+  if (validateAddTaskForm(taskName)) {
+    // CREATE TASK OBJECT
+    let task = createTask(taskName, taskDescription, taskDueDate, taskPriority);
+    console.log(task); //LOG TASK OBJ *****
+
+    // ADD TASK TO SELECTED PROJECT
+    projectController.addTaskToProject(task, selectedProject);
+
+    // RELOAD SECTION DISPLAY
+    let displayedSectionName = document.querySelector(".section").id;
+    reloadProjectSection(displayedSectionName);
+
+    // Log all projects for testing *****
+    console.log(projectController.getAllProjects());
+  } else {
+    console.log("Form not valid");
+  }
+};
+
+const validateAddTaskForm = (requriedFieldValue) => {
+  if (requriedFieldValue !== "") {
+    return true;
+  }
+  return false;
 };

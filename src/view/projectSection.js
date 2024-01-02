@@ -32,12 +32,34 @@ export const renderProjectSection = (projectName) => {
   }
 
   // CREATE ADD TASK BUTTON
+  const addTaskBtn = createAddTaskBtn();
+
+  section.append(sectionTitle, sectionList, addTaskBtn);
+  main.append(section);
+};
+
+export const reloadProjectSection = (projectName) => {
+  const sectionToUpdate = document.querySelector(".section");
+  sectionToUpdate.remove();
+  renderProjectSection(projectName);
+};
+
+/*
+  ----- CREATE ADD TASK BTN -----
+*/
+
+export const createAddTaskBtn = () => {
+  // CREATE BUTTON
   const addTaskBtn = document.createElement("button");
   addTaskBtn.classList.add("section-list__add-task-btn");
+
+  // CREATE PLUS ICON
   const addTaskBtnImg = document.createElement("img");
   addTaskBtnImg.classList.add("add-task-btn__img");
   addTaskBtnImg.src = addBtnSVG;
   addTaskBtnImg.alt = "plus-sign";
+
+  // CREATE BTNT TEXT
   const addTaskBtnText = document.createElement("span");
   addTaskBtnText.classList.add("add-task-btn__text");
   addTaskBtnText.textContent = "Add task";
@@ -45,13 +67,12 @@ export const renderProjectSection = (projectName) => {
   // ADD BTN HOVER AND CLICK HANDLERS
   addBtnIconHoverStyle(addTaskBtn, addTaskBtnImg);
   addTaskBtn.onclick = (e) => {
-    handleAddTaskBtnClick(e, section);
+    handleAddTaskBtnClick(e);
   };
 
+  // APPEND TEXT AND IMAGES TO BTN
   addTaskBtn.append(addTaskBtnImg, addTaskBtnText);
-
-  section.append(sectionTitle, sectionList, addTaskBtn);
-  main.append(section);
+  return addTaskBtn;
 };
 
 /*
@@ -67,10 +88,10 @@ const addBtnIconHoverStyle = (addTaskBtn, addTaskBtnImg) => {
   };
 };
 
-const handleAddTaskBtnClick = (e, section) => {
+const handleAddTaskBtnClick = (e) => {
+  let section = document.querySelector(".section");
   let addTaskBtn = e.currentTarget;
-  console.log(addTaskBtn);
-  section.removeChild(addTaskBtn);
+  addTaskBtn.remove();
   let addTaskForm = renderAddTaskForm();
   section.append(addTaskForm);
 };

@@ -11,9 +11,11 @@ projectRepo.addProjectToRepo(inbox);
 projectRepo.addProjectToRepo(createProject("Chores"));
 
 //TEST DATA
-let washCar = createTask("Wash Car", undefined, "2023-12-12");
+let washCar = createTask("Wash Car", "", "2023-12-12", "Priority");
 inbox.addTask(washCar);
-inbox.addTask(createTask("Clean House", "Dust House", "2023-28-12"));
+inbox.addTask(
+  createTask("Clean House", "Dust House", "2023-28-12", "Priority")
+);
 
 renderProjectSection("Inbox");
 // renderAddTaskForm();
@@ -29,8 +31,7 @@ renderProjectSection("Inbox");
  */
 
 /**
- * Add add task form validation (Submit button changes color to darker blue when valid)
- * add submit and cancel button events
- * make form add task to project, inbox default
  * project selector should not load default utility projects (tomorrow/upcoming)
+ * make project html elemnt display tomorrow/thursday etc for due date also add it to that project based on date
+ * make comeplete button change color based on priority
  */
