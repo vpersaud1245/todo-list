@@ -1,4 +1,5 @@
 import addBtnSVG from "../assets/add-btn-icon.svg";
+import addBtnSVGWhite from "../assets/add-btn-icon--white.svg";
 import { getHTMLTaskElements } from "../controller/projectController";
 
 export const renderProjectSection = (projectName) => {
@@ -32,6 +33,7 @@ export const renderProjectSection = (projectName) => {
   addTaskBtnImg.classList.add("add-task-btn__img");
   addTaskBtnImg.src = addBtnSVG;
   addTaskBtnImg.alt = "plus-sign";
+  addBtnIconHoverStyle(addTaskBtn, addTaskBtnImg);
   const addTaskBtnText = document.createElement("span");
   addTaskBtnText.classList.add("add-task-btn__text");
   addTaskBtnText.textContent = "Add task";
@@ -41,3 +43,15 @@ export const renderProjectSection = (projectName) => {
   section.append(sectionTitle, sectionList, addTaskBtn);
   main.append(section);
 };
+
+const addBtnIconHoverStyle = (addTaskBtn, addTaskBtnImg) => {
+  addTaskBtn.onmouseover = (e) => {
+    addTaskBtnImg.src = addBtnSVGWhite;
+  };
+
+  addTaskBtn.onmouseleave = (e) => {
+    addTaskBtnImg.src = addBtnSVG;
+  };
+};
+
+const handleAddTaskBtnClick = () => {};

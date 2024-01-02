@@ -135,14 +135,19 @@ video {
   align-items: center;
 }
 
+.add-task-btn__img {
+  height: 18px;
+  width: 18px;
+}
+
 .section-list__add-task-btn:hover {
   cursor: pointer;
   color: #495e71;
 }
 
-.add-task-btn__img {
-  height: 18px;
-  width: 18px;
+.section-list__add-task-btn:hover > .add-task-btn__img {
+  background-color: #495e71;
+  border-radius: 50%;
 }
 
 /*
