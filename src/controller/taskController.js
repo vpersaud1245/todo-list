@@ -50,8 +50,49 @@ export const convertTaskToHTML = (task) => {
   }
 
   // TASK PRIORITY
+  if (task.taskPriority !== "Priority") {
+    setToggleCompelteBtnPriorityStyle(task.taskPriority, toggleCompleteBtn);
+  }
 
   // APPEND ELEMENTS
   taskElement.append(toggleCompleteBtn, taskInfoElement);
   return taskElement;
+};
+
+const setToggleCompelteBtnPriorityStyle = (priority, toggleCompleteBtn) => {
+  if (priority === "Priority 1") {
+    setToggleCompleteBtnColor(
+      "#f6dad8",
+      "var(--complete-task-btn-priority-1-clr)",
+      toggleCompleteBtn
+    );
+    return;
+  }
+
+  if (priority === "Priority 2") {
+    setToggleCompleteBtnColor(
+      "#fbe7ce",
+      "var(--complete-task-btn-priority-2-clr)",
+      toggleCompleteBtn
+    );
+    return;
+  }
+
+  if (priority === "Priority 3") {
+    setToggleCompleteBtnColor(
+      "#d3e2f9",
+      "var(--complete-task-btn-priority-3-clr)",
+      toggleCompleteBtn
+    );
+    return;
+  }
+};
+
+const setToggleCompleteBtnColor = (
+  backgroundColor,
+  borderColor,
+  toggleCompleteBtn
+) => {
+  toggleCompleteBtn.style.border = "2px solid " + borderColor;
+  toggleCompleteBtn.style.backgroundColor = backgroundColor;
 };

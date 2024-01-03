@@ -28,6 +28,7 @@ renderProjectSection("Inbox");
  * Add completed tasks section
  * Add add task form validation (Submit button changes color to darker blue when valid) On larger screens make Cross out cursor appear when form is not valid
  * Add local storage. Default classes only load once aka if projects dont exist create them
+ * Make select 2 box (optional)
  */
 
 /**
