@@ -10,6 +10,7 @@ const inbox = createProject("Inbox");
 projectRepo.addProjectToRepo(inbox);
 projectRepo.addProjectToRepo(createProject("Tomorrow"));
 projectRepo.addProjectToRepo(createProject("This Week"));
+projectRepo.addProjectToRepo(createProject("Completed"));
 projectRepo.addProjectToRepo(createProject("Chores"));
 
 //TEST DATA
