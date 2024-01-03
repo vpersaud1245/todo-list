@@ -8,6 +8,8 @@ import { renderAddTaskForm } from "./view/addTaskForm";
 // CREATE AND ADD INBOX TO PROJECT REPO
 const inbox = createProject("Inbox");
 projectRepo.addProjectToRepo(inbox);
+projectRepo.addProjectToRepo(createProject("Tomorrow"));
+projectRepo.addProjectToRepo(createProject("This Week"));
 projectRepo.addProjectToRepo(createProject("Chores"));
 
 //TEST DATA
@@ -22,7 +24,6 @@ renderProjectSection("Inbox");
 
 /**
  * Add form to create task
- * Make check btn color change with priority
  * Make task due date change color if within the week or tomorrow and make it say the actual day if within the week
  * Add tomorrow and upcoming (This week) projects
  * Add completed tasks section
@@ -32,7 +33,5 @@ renderProjectSection("Inbox");
  */
 
 /**
- * project selector should not load default utility projects (tomorrow/upcoming)
- * make project html elemnt display tomorrow/thursday etc for due date also add it to that project based on date
- * make comeplete button change color based on priority
+ * Style nav bar
  */

@@ -210,11 +210,13 @@ video {
 .add-task-form__input--due-date {
   font-size: 9px;
   color: var(--sec-font-color);
+  outline: none;
 }
 
 .add-task-form__input--priority-selector {
   font-size: 11.5px;
   color: var(--sec-font-color);
+  outline: none;
 }
 
 /* ----- ADD TASK FORM BOTTOM ----- */

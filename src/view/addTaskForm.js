@@ -154,10 +154,15 @@ const createBottomSection = () => {
 
   // APPEND PROJECTS TO PROJECT SELECTOR
   let projectNames = projectController.getProjectNames();
-  projectNames.forEach((projectName) => {
-    let projectOption = createProjectSelectorOption(projectName);
-    projectSelector.append(projectOption);
-  });
+  let numOfProjects = projectNames.length;
+  for (let i = 0; i < numOfProjects; i++) {
+    /* If statement skips over default projects 'Tomorrow' and 'Upcoming'
+    They are created at index 1 and 2 of the project array */
+    if (i !== 1 && i !== 2) {
+      let projectOption = createProjectSelectorOption(projectNames[i]);
+      projectSelector.append(projectOption);
+    }
+  }
 
   // CREATE SUBMIT BUTTONS
   const submitButtons = createSubmitButtons();
