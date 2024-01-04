@@ -23,6 +23,31 @@ inbox.addTask(
 renderProjectSection("Inbox");
 // renderAddTaskForm();
 
+const toggleSideBar = (sidebar, state) => {
+  if (state === "open") {
+    sidebar.classList.add("active");
+    return;
+  }
+
+  if (state === "close") {
+    sidebar.classList.remove("active");
+    return;
+  }
+};
+
+let sidebar = document.querySelector(".sidebar");
+const toggle = document.querySelector(".header__open-sidebar-btn");
+
+toggle.onclick = (e) => {
+  toggleSideBar(sidebar, "open");
+};
+
+const closebar = document.querySelector(".sidebar__close-sidebar-btn");
+
+closebar.onclick = (e) => {
+  toggleSideBar(sidebar, "close");
+};
+
 /**
  * Add form to create task
  * Make task due date change color if within the week or tomorrow and make it say the actual day if within the week
@@ -35,4 +60,6 @@ renderProjectSection("Inbox");
 
 /**
  * Style nav bar
+ * add nav header
+ * close sidebar with btn and with click off to side
  */
