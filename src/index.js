@@ -4,6 +4,8 @@ import * as projectRepo from "./model/projectRepo";
 import { createTask } from "./model/task";
 import { renderProjectSection } from "./view/projectSection";
 import { renderAddTaskForm } from "./view/addTaskForm";
+import { addUserProjectsToSidebar } from "./view/sidebar";
+import { getUserProjectNames } from "./controller/projectController";
 
 // CREATE AND ADD INBOX TO PROJECT REPO
 const inbox = createProject("Inbox");
@@ -11,7 +13,7 @@ projectRepo.addProjectToRepo(inbox);
 projectRepo.addProjectToRepo(createProject("Tomorrow"));
 projectRepo.addProjectToRepo(createProject("This Week"));
 projectRepo.addProjectToRepo(createProject("Completed"));
-projectRepo.addProjectToRepo(createProject("Chores"));
+projectRepo.addProjectToRepo(createProject("Chores", "Blue"));
 
 //TEST DATA
 let washCar = createTask("Wash Car", "", "2023-12-12", "Priority");
@@ -22,7 +24,8 @@ inbox.addTask(
 
 renderProjectSection("Inbox");
 // renderAddTaskForm();
-
+console.log(projectRepo.getAllProjects());
+// Add toggle to sidebar btns
 const toggleSideBar = (sidebar, state) => {
   if (state === "open") {
     sidebar.classList.add("active");
@@ -40,6 +43,7 @@ const toggle = document.querySelector(".header__open-sidebar-btn");
 
 toggle.onclick = (e) => {
   toggleSideBar(sidebar, "open");
+  addUserProjectsToSidebar();
 };
 
 const closebar = document.querySelector(".sidebar__close-sidebar-btn");

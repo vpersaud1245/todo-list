@@ -19,13 +19,16 @@ const projectProto = {
   },
 };
 
-function createProject(name) {
+function createProject(name, color) {
   return Object.create(projectProto, {
     projectName: {
       value: name,
     },
     taskList: {
       value: [],
+    },
+    projectColor: {
+      value: color,
     },
   });
 }

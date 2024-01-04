@@ -40,9 +40,21 @@ const getAllProjects = () => {
   return projectRepo.getAllProjects();
 };
 
+const getUserProjects = () => {
+  let projects = getAllProjects();
+  const userProjects = [];
+  for (let i = 0; i < projects.length; i++) {
+    if (i > 3) {
+      console.log(projects[i]);
+      userProjects.push(projects[i]);
+    }
+  }
+  return userProjects;
+};
 export {
   getHTMLTaskElements,
   getProjectNames,
   addTaskToProject,
   getAllProjects,
+  getUserProjects,
 };

@@ -98,6 +98,13 @@ video {
   font-size: 14px;
 }
 
+.active {
+  left: 0;
+  box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.3);
+}
+
+/* ----- SIDEBAR TOP ----- */
+
 .sidebar__top {
   padding: 12px;
   display: flex;
@@ -108,10 +115,7 @@ video {
   justify-self: flex-end;
 }
 
-.active {
-  left: 0;
-  box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.3);
-}
+/* ----- SIDEBAR MAIN ----- */
 
 .sidebar-main {
   display: flex;
@@ -124,6 +128,8 @@ video {
   flex-direction: column;
   gap: 10px;
 }
+
+/* ----- SIDEBAR NAV LIST ----- */
 
 .sidebar__list--nav > li {
   display: grid;
@@ -140,6 +146,8 @@ video {
 .nav-list__list-text {
   padding-left: 2px;
 }
+
+/* ----- SIDEBAR PROJECT MENU ----- */
 
 .sidebar__project-menu {
   display: flex;
@@ -177,6 +185,18 @@ video {
   height: 15px;
   width: 15px;
   transform: rotate(90deg);
+}
+
+/* ----- SIDEBAR PROJECT LIST ----- */
+
+.project-list__item {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.project-list-item__icon {
+  font-size: 20px;
 }
 /*
   ----- MAIN -----
