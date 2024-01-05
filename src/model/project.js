@@ -17,6 +17,9 @@ const projectProto = {
   getTaskIndexFromName(taskName) {
     return taskList.map((task) => task.taskName).indexOf(taskName);
   },
+  clearTaskList() {
+    this.taskList.length = 0;
+  },
 };
 
 function createProject(name, color) {

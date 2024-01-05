@@ -14,17 +14,18 @@ import { getAllTasks } from "./controller/taskController";
 // CREATE AND ADD INBOX TO PROJECT REPO
 const inbox = createProject("Inbox");
 projectRepo.addProjectToRepo(inbox);
-projectRepo.addProjectToRepo(createProject("Tomorrow"));
-projectRepo.addProjectToRepo(createProject("This Week"));
+projectRepo.addProjectToRepo(createProject("Today"));
+projectRepo.addProjectToRepo(createProject("Upcoming"));
 projectRepo.addProjectToRepo(createProject("Completed"));
 projectRepo.addProjectToRepo(createProject("Chores", "Blue"));
 
 //TEST DATA
-let washCar = createTask("Wash Car", "", "2023-12-12", "Priority");
+let washCar = createTask("Wash Car", "", "2023-12-13", "Priority");
 inbox.addTask(washCar);
 inbox.addTask(
-  createTask("Clean House", "Dust House", "2023-28-12", "Priority")
+  createTask("Clean House", "Dust House", "2023-12-28", "Priority")
 );
+inbox.addTask(createTask("Test", "", "2024-01-05", "Priority"));
 
 renderProjectSection("Inbox");
 // renderAddTaskForm();

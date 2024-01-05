@@ -1,3 +1,4 @@
+import { compareAsc } from "date-fns";
 import calendarIcon from "../assets/calendar-icon.svg";
 import * as projectRepo from "../model/projectRepo";
 
@@ -132,4 +133,32 @@ export const getAllTasks = () => {
     }
   }
   return taskList;
+};
+
+/**
+ * Compares task due date to another date
+ * @param taskDueDate task due date string in format YYYY-DD-MM
+ * @param dateToCompare date type object of date to compare to
+ * @returns  (-1) if task due date is before date
+ * @returns (0) if task due date and date are the same
+ * @returns (1) if task due date is after date
+ */
+export const compareTaskDueDate = (taskDuedate, dateToCompare) => {
+  let dueDateSplit = taskDuedate.split("-");
+  let dueDateYear = dueDateSplit[0];
+  let dueDateMonth = dueDateSplit[1] - 1; //Subtract month by one as month is indexed from zero
+  let dueDateDay = dueDateSplit[2];
+  let dueDate = new Date(dueDateYear, dueDateMonth, dueDateDay);
+  let dateToCompareYear = dateToCompare.getFullYear();
+  let dateToCompareMonth = dateToCompare.getMonth();
+  let dateToCompareDay = dateToCompare.getDate();
+  let dateToCompareNoTime = new Date(
+    dateToCompareYear,
+    dateToCompareMonth,
+    dateToCompareDay
+  );
+  console.log(dueDate);
+  console.log(dateToCompareNoTime);
+  console.log(compareAsc(dueDate, dateToCompareNoTime));
+  return compareAsc(dueDate, dateToCompareNoTime);
 };

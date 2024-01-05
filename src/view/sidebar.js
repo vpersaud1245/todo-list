@@ -3,6 +3,7 @@ import {
   getUserProjects,
 } from "../controller/projectController";
 import { reloadProjectSection, renderProjectSection } from "./projectSection";
+import { renderTodaySection } from "./todaySection";
 
 export const addUserProjectsToSidebar = () => {
   let userProjects = getUserProjects();
@@ -29,7 +30,11 @@ export const addNavListButtonEvents = () => {
   };
 
   // DISPLAY TODAY SECTION LISTENER
-  const todayNavBtn = document.querySelector("nav-list-item__today");
+  const todayNavBtn = document.querySelector(".nav-list-item__today");
+  todayNavBtn.onclick = (e) => {
+    renderTodaySection();
+    toggleSideBar(sidebar, "close");
+  };
   // LISTENER TO DISPLAY PROJECT SECTIONS WHEN PROJECT IS CLICKED
   let projectBtns = document.querySelectorAll(".project-list__item");
   console.log(projectBtns);

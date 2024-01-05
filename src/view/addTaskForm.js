@@ -42,7 +42,7 @@ export const renderAddTaskForm = () => {
 */
 
 /*
-  ----- TOP SECTION -----
+  ----- TOP SECTION -----=
 */
 const createTopSection = () => {
   // CREATE SECTION CONTAINER
@@ -152,10 +152,20 @@ const createBottomSection = () => {
     "add-task-form__input",
     "add-task-form__input--project-selector"
   );
-  let projectSection = document.querySelector(".section__title").textContent;
-  // Makes the first project option the same as the project section
-  let firstOption = createProjectSelectorOption(projectSection);
-  projectSelector.append(firstOption);
+  let projectSectionName =
+    document.querySelector(".section__title").textContent;
+  console.log(projectSectionName);
+  console.log(projectController.isUserProject(projectSectionName));
+  let userProjectOptionAdded = false;
+  // Makes the first project option the same as the project section if it is a user added project
+  if (
+    projectSectionName !== "Inbox" &&
+    projectController.isUserProject(projectSectionName)
+  ) {
+    let firstOption = createProjectSelectorOption(projectSectionName);
+    projectSelector.append(firstOption);
+    userProjectOptionAdded = true;
+  }
 
   // APPEND PROJECTS TO PROJECT SELECTOR
   let projectNames = projectController.getProjectNames();
@@ -165,11 +175,15 @@ const createBottomSection = () => {
     They are created at index 1-3 of the project array */
     if (i !== 1 && i !== 2 && i !== 3) {
       let projectName = projectNames[i];
-      // If statement ensures the project section is not added twice
-      if (projectName !== projectSection) {
-        let projectOption = createProjectSelectorOption(projectName);
-        projectSelector.append(projectOption);
+      // If statement ensures the project section is not added twice if it is added as first option
+      if (
+        projectName === projectSectionName &&
+        userProjectOptionAdded === true
+      ) {
+        continue;
       }
+      let projectOption = createProjectSelectorOption(projectName);
+      projectSelector.append(projectOption);
     }
   }
 

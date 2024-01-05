@@ -52,6 +52,20 @@ const getUserProjects = () => {
   return userProjects;
 };
 
+const isUserProject = (projectName) => {
+  let isUserProject = false;
+  let userProjects = getUserProjects();
+  let userProjectNames = userProjects.map((project) => project.projectName);
+  userProjectNames.forEach((userProjectName) => {
+    console.log(`User poroject name: ${userProjectName}`);
+    console.log(`project name: ${projectName}`);
+    if (userProjectName === projectName) {
+      isUserProject = true;
+    }
+  });
+  return isUserProject;
+};
+
 const createProjectListElement = (project) => {
   let projectName = project.projectName;
   let projectColor = project.projectColor;
@@ -73,6 +87,13 @@ const createProjectListElement = (project) => {
 
   return listItem;
 };
+
+const clearProjectTaskList = (projectName) => {
+  let project = projectRepo.getProjectFromName(projectName);
+  console.log(project);
+  project.clearTaskList();
+};
+
 export {
   getHTMLTaskElements,
   getProjectNames,
@@ -80,4 +101,6 @@ export {
   getAllProjects,
   getUserProjects,
   createProjectListElement,
+  clearProjectTaskList,
+  isUserProject,
 };
