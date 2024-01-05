@@ -1,4 +1,5 @@
 import calendarIcon from "../assets/calendar-icon.svg";
+import * as projectRepo from "../model/projectRepo";
 
 // CONVERT TASK OBJECT TO HTML ELEMENT
 export const convertTaskToHTML = (task) => {
@@ -59,6 +60,14 @@ export const convertTaskToHTML = (task) => {
   return taskElement;
 };
 
+/*
+  ----- PRIORITY CLR SELECTOR HELPER FUNCTIONS -----
+*/
+/**
+ * Sets task complete button style based on priority
+ * @param priority
+ * @param toggleCompleteBtn
+ */
 const setToggleCompelteBtnPriorityStyle = (priority, toggleCompleteBtn) => {
   if (priority === "Priority 1") {
     setToggleCompleteBtnColor(
@@ -88,6 +97,12 @@ const setToggleCompelteBtnPriorityStyle = (priority, toggleCompleteBtn) => {
   }
 };
 
+/**
+ * Sets the color of the task complete button
+ * @param backgroundColor
+ * @param borderColor
+ * @param toggleCompleteBtn
+ */
 const setToggleCompleteBtnColor = (
   backgroundColor,
   borderColor,
@@ -95,4 +110,26 @@ const setToggleCompleteBtnColor = (
 ) => {
   toggleCompleteBtn.style.border = "2px solid " + borderColor;
   toggleCompleteBtn.style.backgroundColor = backgroundColor;
+};
+
+// ----- END PRIORITY CLR SELECTOR HELPER FUNCTIONS ----- //
+
+export const getAllTasks = () => {
+  let taskList = [];
+  let projectList = projectRepo.getAllProjects();
+  for (let i = 0; i < projectList.length; i++) {
+    // If statement skips default projects (Tomorrow/Upcoming/Completed)
+    if (i < 1 || i > 3) {
+      let project = projectList[i];
+      console.log(`project: ${project}`);
+      let projectTaskList = project.getTaskList();
+      if (projectTaskList.length > 0) {
+        projectTaskList.forEach((task) => {
+          console.log(`task: ${task}`);
+          taskList.push(task);
+        });
+      }
+    }
+  }
+  return taskList;
 };

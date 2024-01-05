@@ -4,6 +4,7 @@ import cancelButtonImg from "../assets/cancel-icon.svg";
 import submitButtonImg from "../assets/submit-icon.svg";
 import { createAddTaskBtn, reloadProjectSection } from "./projectSection";
 import { createTask } from "../model/task";
+import { getAllTasks } from "../controller/taskController";
 
 export const renderAddTaskForm = () => {
   // CREATE FORM ELEMENTS
@@ -151,6 +152,10 @@ const createBottomSection = () => {
     "add-task-form__input",
     "add-task-form__input--project-selector"
   );
+  let projectSection = document.querySelector(".section__title").textContent;
+  // Makes the first project option the same as the project section
+  let firstOption = createProjectSelectorOption(projectSection);
+  projectSelector.append(firstOption);
 
   // APPEND PROJECTS TO PROJECT SELECTOR
   let projectNames = projectController.getProjectNames();
@@ -159,8 +164,12 @@ const createBottomSection = () => {
     /* If statement skips over default projects 'Tomorrow','Upcoming','Completed'
     They are created at index 1-3 of the project array */
     if (i !== 1 && i !== 2 && i !== 3) {
-      let projectOption = createProjectSelectorOption(projectNames[i]);
-      projectSelector.append(projectOption);
+      let projectName = projectNames[i];
+      // If statement ensures the project section is not added twice
+      if (projectName !== projectSection) {
+        let projectOption = createProjectSelectorOption(projectName);
+        projectSelector.append(projectOption);
+      }
     }
   }
 
@@ -258,8 +267,8 @@ const formSubmitBtnOnClickHandler = () => {
     let displayedSectionName = document.querySelector(".section").id;
     reloadProjectSection(displayedSectionName);
 
-    // Log all projects for testing *****
-    console.log(projectController.getAllProjects());
+    // Log all tasks for testing *****
+    console.log(getAllTasks());
   } else {
     console.log("Form not valid");
   }

@@ -4,8 +4,12 @@ import * as projectRepo from "./model/projectRepo";
 import { createTask } from "./model/task";
 import { renderProjectSection } from "./view/projectSection";
 import { renderAddTaskForm } from "./view/addTaskForm";
-import { addUserProjectsToSidebar } from "./view/sidebar";
+import {
+  addNavListButtonEvents,
+  addUserProjectsToSidebar,
+} from "./view/sidebar";
 import { getUserProjectNames } from "./controller/projectController";
+import { getAllTasks } from "./controller/taskController";
 
 // CREATE AND ADD INBOX TO PROJECT REPO
 const inbox = createProject("Inbox");
@@ -38,19 +42,17 @@ const toggleSideBar = (sidebar, state) => {
   }
 };
 
+// SIDEBAR FUNCTIONS
 let sidebar = document.querySelector(".sidebar");
 const toggle = document.querySelector(".header__open-sidebar-btn");
 
 toggle.onclick = (e) => {
   toggleSideBar(sidebar, "open");
   addUserProjectsToSidebar();
+  addNavListButtonEvents();
 };
 
-const closebar = document.querySelector(".sidebar__close-sidebar-btn");
-
-closebar.onclick = (e) => {
-  toggleSideBar(sidebar, "close");
-};
+console.log(getAllTasks());
 
 /**
  * Add form to create task
@@ -60,10 +62,10 @@ closebar.onclick = (e) => {
  * Add add task form validation (Submit button changes color to darker blue when valid) On larger screens make Cross out cursor appear when form is not valid
  * Add local storage. Default classes only load once aka if projects dont exist create them
  * Make select 2 box (optional)
+ * Add all hover effects
  */
 
 /**
- * Style nav bar
- * add nav header
  * close sidebar with btn and with click off to side
+ * Finish adding listeners to display pages when nav btn is clicked
  */
