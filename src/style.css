@@ -274,6 +274,27 @@ video {
   margin: 10px 0;
 }
 
+/*  ----- UPCOMING SECTION STYLES -----  */
+
+.section__day-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.day-section__title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 28px;
+}
+.section-list__title-divider {
+  color: var(--task-divider-color);
+  background-color: var(--task-divider-color);
+  border: none;
+  height: 1px;
+  margin: 3px 0;
+}
+
 /*
   ----- ADD TASK BUTTON -----
 */

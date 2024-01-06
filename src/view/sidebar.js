@@ -4,6 +4,7 @@ import {
 } from "../controller/projectController";
 import { reloadProjectSection, renderProjectSection } from "./projectSection";
 import { renderTodaySection } from "./todaySection";
+import { renderUpcomingSection } from "./upcomingSection";
 
 export const addUserProjectsToSidebar = () => {
   let userProjects = getUserProjects();
@@ -24,7 +25,7 @@ export const addNavListButtonEvents = () => {
   const inboxNavBtn = document.querySelector(".nav-list-item__inbox");
   const closeSideBarBtn = document.querySelector(".sidebar__close-sidebar-btn");
 
-  // LISTENER TO DISPLAY INBOX WHEN INBOX BTN IS CLICKED
+  // DISPLAY INBOX LISTENER
   inboxNavBtn.onclick = (e) => {
     renderClickedSection(e, sidebar);
   };
@@ -35,7 +36,14 @@ export const addNavListButtonEvents = () => {
     renderTodaySection();
     toggleSideBar(sidebar, "close");
   };
-  // LISTENER TO DISPLAY PROJECT SECTIONS WHEN PROJECT IS CLICKED
+
+  // DISPLAY UPCOMING LISTENER
+  const upcomingNavBtn = document.querySelector(".nav-list-item__upcoming");
+  upcomingNavBtn.onclick = (e) => {
+    renderUpcomingSection();
+    toggleSideBar(sidebar, "close");
+  };
+  // DISPLAY PROJECT SECTIONS LISTENER
   let projectBtns = document.querySelectorAll(".project-list__item");
   console.log(projectBtns);
   projectBtns.forEach((projectBtn) => {
@@ -43,12 +51,16 @@ export const addNavListButtonEvents = () => {
       renderClickedSection(e, sidebar);
     };
   });
-  // LISTENER TO CLOSE SIDEBAR WHEN BTN IS CLICKED
+
+  // CLOSE SIDEBAR LISTENER
   closeSideBarBtn.onclick = (e) => {
     toggleSideBar(sidebar, "close");
   };
 };
 
+/*
+  ----- HELPER FUNCTIONS -----
+*/
 const toggleSideBar = (sidebar, state) => {
   if (state === "open") {
     sidebar.classList.add("active");

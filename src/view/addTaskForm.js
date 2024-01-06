@@ -5,6 +5,8 @@ import submitButtonImg from "../assets/submit-icon.svg";
 import { createAddTaskBtn, reloadProjectSection } from "./projectSection";
 import { createTask } from "../model/task";
 import { getAllTasks } from "../controller/taskController";
+import { renderTodaySection } from "./todaySection";
+import { renderUpcomingSection } from "./upcomingSection";
 
 export const renderAddTaskForm = () => {
   // CREATE FORM ELEMENTS
@@ -248,8 +250,9 @@ const cancelBtnOnClickHandler = () => {
   const addTaskForm = document.querySelector(".add-task-form");
   addTaskForm.remove();
   const addTaskBtn = createAddTaskBtn();
-  let section = document.querySelector(".section");
-  section.append(addTaskBtn);
+  // RELOAD SECTION DISPLAY
+  let displayedSectionName = document.querySelector(".section").id;
+  reloadSectionDisplay(displayedSectionName);
 };
 
 // ----- FORM SUBMIT BTN HANDLER -----
@@ -279,8 +282,7 @@ const formSubmitBtnOnClickHandler = () => {
 
     // RELOAD SECTION DISPLAY
     let displayedSectionName = document.querySelector(".section").id;
-    reloadProjectSection(displayedSectionName);
-
+    reloadSectionDisplay(displayedSectionName);
     // Log all tasks for testing *****
     console.log(getAllTasks());
   } else {
@@ -293,4 +295,16 @@ const validateAddTaskForm = (requriedFieldValue) => {
     return true;
   }
   return false;
+};
+
+const reloadSectionDisplay = (displayedSectionName) => {
+  if (displayedSectionName === "Today") {
+    renderTodaySection();
+    return;
+  }
+  if (displayedSectionName === "Upcoming") {
+    renderUpcomingSection();
+    return;
+  }
+  reloadProjectSection(displayedSectionName);
 };

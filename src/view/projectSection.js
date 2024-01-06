@@ -8,14 +8,10 @@ export const renderProjectSection = (projectName) => {
   const main = document.querySelector(".main");
 
   // CREATE PROJECT SECTION
-  const section = document.createElement("div");
-  section.classList.add("section");
-  section.id = projectName;
+  const section = createProjectSection(projectName);
 
   // CREATE SECTION TITLE
-  const sectionTitle = document.createElement("h2");
-  sectionTitle.classList.add("section__title");
-  sectionTitle.textContent = projectName;
+  const sectionTitle = createSectionTitle(projectName);
 
   // CREATE SECTION LIST
   const sectionList = document.createElement("ul");
@@ -42,6 +38,28 @@ export const reloadProjectSection = (projectName) => {
   const sectionToUpdate = document.querySelector(".section");
   sectionToUpdate.remove();
   renderProjectSection(projectName);
+};
+
+/*
+  ----- CREATE PROJECT SECTION -----
+*/
+
+export const createProjectSection = (projectName) => {
+  const section = document.createElement("div");
+  section.classList.add("section");
+  section.id = projectName;
+  return section;
+};
+
+/*
+  ----- CREATE SECTION TITLE -----
+*/
+
+export const createSectionTitle = (projectName) => {
+  const sectionTitle = document.createElement("h2");
+  sectionTitle.classList.add("section__title");
+  sectionTitle.textContent = projectName;
+  return sectionTitle;
 };
 
 /*
@@ -91,7 +109,10 @@ const addBtnIconHoverStyle = (addTaskBtn, addTaskBtnImg) => {
 const handleAddTaskBtnClick = (e) => {
   let section = document.querySelector(".section");
   let addTaskBtn = e.currentTarget;
-  addTaskBtn.remove();
   let addTaskForm = renderAddTaskForm();
-  section.append(addTaskForm);
+  addTaskBtn.after(addTaskForm);
+  let allAddTaskBtns = document.querySelectorAll(".section-list__add-task-btn");
+  allAddTaskBtns.forEach((button) => {
+    button.remove();
+  });
 };
