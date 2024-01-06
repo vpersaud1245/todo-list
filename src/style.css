@@ -279,7 +279,7 @@ video {
 .section__day-sections {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
 }
 
 .day-section__title {
@@ -292,7 +292,7 @@ video {
   background-color: var(--task-divider-color);
   border: none;
   height: 1px;
-  margin: 3px 0;
+  margin: 3px 0 10px 0;
 }
 
 /*

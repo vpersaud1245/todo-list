@@ -10,9 +10,14 @@ import {
   getAllTasks,
 } from "../controller/taskController";
 
+/**
+ * Render the upcoming section
+ */
 export const renderUpcomingSection = () => {
   // GET MAIN ELEMENT
   const main = document.querySelector(".main");
+
+  // CLEAR MAIN ELEMENTS TO RESET
   main.innerHTML = "";
 
   // CREATE SECTION ELEMENT
@@ -45,6 +50,7 @@ export const renderUpcomingSection = () => {
   main.append(section);
 };
 
+// CREATE AND APPEND DAY SECTION
 const createDaySection = (day) => {
   // CREATE DAY SECTION
   let daySection = document.createElement("div");
@@ -65,7 +71,12 @@ const createDaySection = (day) => {
   allTasks.forEach((task) => {
     if (compareTaskDueDate(task.taskDueDate, day) === 0) {
       let taskElement = convertTaskToHTML(task);
-      daySection.append(taskElement);
+      const taskDivider = document.createElement("hr");
+      taskDivider.classList.add(
+        "section-list__task-divider",
+        "section-list_task-divider--upcoming"
+      );
+      daySection.append(taskElement, taskDivider);
     }
   });
 

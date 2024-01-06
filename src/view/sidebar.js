@@ -43,6 +43,7 @@ export const addNavListButtonEvents = () => {
     renderUpcomingSection();
     toggleSideBar(sidebar, "close");
   };
+
   // DISPLAY PROJECT SECTIONS LISTENER
   let projectBtns = document.querySelectorAll(".project-list__item");
   console.log(projectBtns);
@@ -52,10 +53,15 @@ export const addNavListButtonEvents = () => {
     };
   });
 
-  // CLOSE SIDEBAR LISTENER
+  // CLOSE SIDEBAR LISTENERS
   closeSideBarBtn.onclick = (e) => {
     toggleSideBar(sidebar, "close");
   };
+  /* Added a short timeout before attaching the click event listener to avoid immediate placement during the sidebar opening.
+  Without this delay, the listener could inadvertently trigger the sidebar closure, as it's initially triggered by the same button click that opens the sidebar. */
+  setTimeout(() => {
+    document.addEventListener("click", hideSidebarOnOutsideClick);
+  }, 0);
 };
 
 /*
@@ -69,6 +75,8 @@ const toggleSideBar = (sidebar, state) => {
 
   if (state === "close") {
     sidebar.classList.remove("active");
+    // Event listener needs to be removed to allow sidebar to be opened again
+    document.removeEventListener("click", hideSidebarOnOutsideClick);
     return;
   }
 };
@@ -78,4 +86,12 @@ const renderClickedSection = (e, sidebar) => {
   let projectName = projectListBtn.children[1].textContent;
   reloadProjectSection(projectName);
   toggleSideBar(sidebar, "close");
+};
+
+const hideSidebarOnOutsideClick = (e) => {
+  const sidebar = document.querySelector(".sidebar");
+  const isClickInsideSidebar = sidebar.contains(e.target);
+  if (!isClickInsideSidebar) {
+    toggleSideBar(sidebar, "close");
+  }
 };

@@ -56,7 +56,6 @@ toggle.onclick = (e) => {
 console.log(getAllTasks());
 
 /**
- * Add form to create task
  * Make task due date change color if within the week or tomorrow and make it say the actual day if within the week
  * Add tomorrow and upcoming (This week) projects
  * Add completed tasks section
@@ -64,9 +63,9 @@ console.log(getAllTasks());
  * Add local storage. Default classes only load once aka if projects dont exist create them
  * Make select 2 box (optional)
  * Add all hover effects
+ * Make the add task form automatically choose dates when creating tasks on today and upcoming
  */
 
 /**
- * close sidebar with btn and with click off to side
  * Finish adding listeners to display pages when nav btn is clicked
  */
