@@ -44,6 +44,12 @@ export const addNavListButtonEvents = () => {
     toggleSideBar(sidebar, "close");
   };
 
+  //DISPLAY COMPLERED SECTION LISTENER
+  const completedNavBtn = document.querySelector(".nav-list-item__completed");
+  completedNavBtn.onclick = (e) => {
+    renderClickedSection(e, sidebar);
+  };
+
   // DISPLAY PROJECT SECTIONS LISTENER
   let projectBtns = document.querySelectorAll(".project-list__item");
   console.log(projectBtns);

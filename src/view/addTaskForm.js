@@ -1,9 +1,10 @@
 import { add, format } from "date-fns";
 import * as projectController from "../controller/projectController";
+import { updateLocalStorage } from "../model/projectRepo";
 import cancelButtonImg from "../assets/cancel-icon.svg";
 import submitButtonImg from "../assets/submit-icon.svg";
 import { createAddTaskBtn, reloadProjectSection } from "./projectSection";
-import { createTask } from "../model/task";
+import { Task } from "../model/task";
 import { getAllTasks } from "../controller/taskController";
 import { renderTodaySection } from "./todaySection";
 import { renderUpcomingSection } from "./upcomingSection";
@@ -274,7 +275,7 @@ const formSubmitBtnOnClickHandler = () => {
 
   if (validateAddTaskForm(taskName)) {
     // CREATE TASK OBJECT
-    let task = createTask(
+    let task = new Task(
       taskName,
       taskDescription,
       taskDueDate,
@@ -285,6 +286,9 @@ const formSubmitBtnOnClickHandler = () => {
 
     // ADD TASK TO SELECTED PROJECT
     projectController.addTaskToProject(task, selectedProject);
+
+    // UPDATE LOCAL STORAGE
+    updateLocalStorage();
 
     // RELOAD SECTION DISPLAY
     let displayedSectionName = document.querySelector(".section").id;

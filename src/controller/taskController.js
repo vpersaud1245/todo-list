@@ -2,6 +2,7 @@ import { compareAsc } from "date-fns";
 import calendarIcon from "../assets/calendar-icon.svg";
 import * as projectRepo from "../model/projectRepo";
 import {
+  addTaskToProject,
   clearProjectTaskList,
   removeTaskFromProject,
 } from "./projectController";
@@ -138,6 +139,7 @@ const handleToggleCompleteBtnClick = (e) => {
   let task = getTaskByID(taskID);
   let assignedProject = task.assignedProject;
   removeTaskFromProject(task, assignedProject);
+  addTaskToProject(task, "Completed");
   taskElement.remove();
   taskDivider.remove();
 };

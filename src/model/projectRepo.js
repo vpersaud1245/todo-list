@@ -1,4 +1,4 @@
-const projects = [];
+let projects = [];
 
 const addProjectToRepo = (projectToAdd) => {
   projects.push(projectToAdd);
@@ -26,9 +26,25 @@ const getAllProjects = () => {
   return projects;
 };
 
+const updateLocalStorage = () => {
+  const allProjects = projects;
+
+  let projectsString = JSON.stringify(allProjects);
+  console.log(`projects stringified: ${projectsString}`);
+
+  localStorage.setItem("projects", projectsString);
+};
+
+const updateProjectRepoFromLocalStorage = () => {
+  let storedProjects = localStorage.getItem("projects");
+  const projectsArray = JSON.parse(storedProjects);
+};
+
 export {
   addProjectToRepo,
   removeProjectFromRepo,
   getProjectFromName,
   getAllProjects,
+  updateProjectRepoFromLocalStorage,
+  updateLocalStorage,
 };
