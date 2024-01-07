@@ -1,3 +1,4 @@
+import { Project } from "./project";
 let projects = [];
 
 const addProjectToRepo = (projectToAdd) => {
@@ -38,6 +39,12 @@ const updateLocalStorage = () => {
 const updateProjectRepoFromLocalStorage = () => {
   let storedProjects = localStorage.getItem("projects");
   const projectsArray = JSON.parse(storedProjects);
+  console.log(`preprocessed project array from storage: ${storedProjects}`);
+  for (let i = 0; i < projectsArray.length; i++) {
+    let project = Project.createFromObject(projectsArray[i]);
+    projects.push(project);
+  }
+  console.log`updated projects from local storage ${projects}`;
 };
 
 export {

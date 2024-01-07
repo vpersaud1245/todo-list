@@ -29,10 +29,10 @@ const addTaskToProject = (task, projectName) => {
 
 const removeTaskFromProject = (task, projectName) => {
   let project = projectRepo.getProjectFromName(projectName);
-  let taskID = task.taskID;
-  let projectTaskListIDs = project.taskList.map((task) => task.taskID);
-  let idIndex = projectTaskListIDs.indexOf(taskID);
-  project.taskList.splice(idIndex, 1);
+  console.log(`project before removal ${project.taskList}`);
+  let taskName = task.taskName;
+  project.removeTask(taskName);
+  console.log(`project after removal: ${project.taskList}`);
 };
 
 /**

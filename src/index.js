@@ -15,11 +15,11 @@ if (localStorage.getItem("projects") !== null) {
 }
 
 // CREATE AND ADD INBOX TO PROJECT REPO
-const inbox = new Project("Inbox", "");
-projectRepo.addProjectToRepo(inbox);
-projectRepo.addProjectToRepo(new Project("Today", ""));
-projectRepo.addProjectToRepo(new Project("Upcoming", ""));
-projectRepo.addProjectToRepo(new Project("Completed", ""));
+// const inbox = new Project("Inbox", "");
+// projectRepo.addProjectToRepo(inbox);
+// projectRepo.addProjectToRepo(new Project("Today", ""));
+// projectRepo.addProjectToRepo(new Project("Upcoming", ""));
+// projectRepo.addProjectToRepo(new Project("Completed", ""));
 // projectRepo.addProjectToRepo(new Project("Chores", "Blue"));
 
 // //TEST DATA

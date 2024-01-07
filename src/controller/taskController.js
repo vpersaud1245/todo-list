@@ -1,4 +1,4 @@
-import { compareAsc } from "date-fns";
+import { compareAsc, format } from "date-fns";
 import calendarIcon from "../assets/calendar-icon.svg";
 import * as projectRepo from "../model/projectRepo";
 import {
@@ -132,23 +132,45 @@ const setToggleCompleteBtnColor = (
   ----- REMOVE TASK BTN EVENT HANDLERS -----
 */
 
+/**
+ * Removes task from current project, updates task completion date and
+ * adds project to completed projects
+ */
 const handleToggleCompleteBtnClick = (e) => {
+  // GET TASK ELEMENT AND DIVIDER TO BE REMOVED
   let taskElement = e.currentTarget.parentElement;
   let taskDivider = taskElement.nextSibling;
+
+  // GET TASK OBJECT
   let taskID = taskElement.id;
   let task = getTaskByID(taskID);
+
+  // REMOVE TASK FROM ASSIGNED PROJECT
   let assignedProject = task.assignedProject;
   removeTaskFromProject(task, assignedProject);
+
+  // SET TASK COMPLETION DATE
+  let completionDate = new Date();
+  let completionDateFormatted = format(completionDate, "yyyy-dd-MM");
+  task.setCompletionDate(completionDateFormatted);
+
+  // ADD TASK TO COMPLETED PROJECTS
+  task.setAssignedProject("Completed");
   addTaskToProject(task, "Completed");
+
+  // REMOVE TASK ELEMENTS
   taskElement.remove();
   taskDivider.remove();
+
+  // UPDATE LOCAL STORAGE
+  projectRepo.updateLocalStorage();
 };
 
 /*
   ----- UTILITY FUNCTIONS -----
  */
 /**
- *
+ * Gets all tasks excluding those in Tomorrow, Upcoming and Completed
  * @returns {Array} An array of all tasks
  */
 export const getAllTasks = () => {

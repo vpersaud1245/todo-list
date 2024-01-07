@@ -6,32 +6,27 @@ class Task {
     this.taskDueDate = dueDate;
     this.taskPriority = priority;
     this.assignedProject = project;
+    this.completionDate = "";
+  }
+
+  static createFromObject(obj) {
+    return new Task(
+      obj.taskName,
+      obj.taskDescription,
+      obj.taskDueDate,
+      obj.taskPriority,
+      obj.assignedProject
+    );
+  }
+
+  setAssignedProject(projectName) {
+    this.assignedProject = projectName;
+  }
+
+  setCompletionDate(date) {
+    this.completionDate = date;
   }
 }
-
-// const taskProto = {};
-// function createTask(name, description, dueDate, priority, project) {
-//   return Object.create(taskProto, {
-//     taskID: {
-//       value: generateTaskID(),
-//     },
-//     taskName: {
-//       value: name,
-//     },
-//     taskDescription: {
-//       value: description,
-//     },
-//     taskDueDate: {
-//       value: dueDate,
-//     },
-//     taskPriority: {
-//       value: priority,
-//     },
-//     assignedProject: {
-//       value: project,
-//     },
-//   });
-// }
 
 export { Task };
 

@@ -1,8 +1,18 @@
+import { Task } from "./task";
 class Project {
   constructor(name, color) {
-    this.taskList = [];
     this.projectName = name;
+    this.taskList = [];
     this.projectColor = color;
+  }
+  static createFromObject(obj) {
+    const project = new Project(obj.projectName, obj.projectColor);
+    if (obj.taskList.length > 0) {
+      project.taskList = obj.taskList.map((task) =>
+        Task.createFromObject(task)
+      );
+    }
+    return project;
   }
   getProjectName() {
     return this.projectName;
@@ -13,56 +23,18 @@ class Project {
   addTask(taskToAdd) {
     this.taskList.push(taskToAdd);
   }
-  removeTask(taskToRemove) {
-    let taskIndex = this.getTaskIndexFromName(taskToRemove);
+  removeTask(taskNameToRemove) {
+    let taskIndex = this.getTaskIndexFromName(taskNameToRemove);
     if (taskIndex > -1) {
-      taskList.splice(taskIndex, 1);
+      this.taskList.splice(taskIndex, 1);
     }
   }
   getTaskIndexFromName(taskName) {
-    return taskList.map((task) => task.taskName).indexOf(taskName);
+    return this.taskList.map((task) => task.taskName).indexOf(taskName);
   }
   clearTaskList() {
     this.taskList.length = 0;
   }
 }
-
-// const projectProto = {
-//   getProjectName() {
-//     return this.projectName;
-//   },
-//   getTaskList() {
-//     return this.taskList;
-//   },
-//   addTask(taskToAdd) {
-//     this.taskList.push(taskToAdd);
-//   },
-//   removeTask(taskToRemove) {
-//     let taskIndex = this.getTaskIndexFromName(taskToRemove);
-//     if (taskIndex > -1) {
-//       taskList.splice(taskIndex, 1);
-//     }
-//   },
-//   getTaskIndexFromName(taskName) {
-//     return taskList.map((task) => task.taskName).indexOf(taskName);
-//   },
-//   clearTaskList() {
-//     this.taskList.length = 0;
-//   },
-// };
-
-// function createProject(name, color) {
-//   return Object.create(projectProto, {
-//     projectName: {
-//       value: name,
-//     },
-//     taskList: {
-//       value: [],
-//     },
-//     projectColor: {
-//       value: color,
-//     },
-//   });
-// }
 
 export { Project };
