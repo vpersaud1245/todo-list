@@ -5,7 +5,7 @@ import {
   createSectionTitle,
 } from "./projectSection";
 import {
-  compareTaskDueDate,
+  compareTaskDate,
   convertTaskToHTML,
   getAllTasks,
 } from "../controller/taskController";
@@ -36,6 +36,7 @@ export const renderUpcomingSection = () => {
     thisWeek.push(day);
   }
 
+  // CREATE ELEMENT WRAPPER FOR DAY SECTIONS
   const daySections = document.createElement("div");
   daySections.classList.add("section__day-sections");
 
@@ -60,6 +61,7 @@ const createDaySection = (day) => {
   let daySectionTitle = createDaySectionTitle(day);
   daySection.append(daySectionTitle);
 
+  // CREATE AND APPEND TITLE DIVIDER
   const titleDivider = document.createElement("hr");
   titleDivider.classList.add("section-list__title-divider");
   daySection.append(titleDivider);
@@ -69,7 +71,7 @@ const createDaySection = (day) => {
 
   // APPEND TASKS CURRENT DAY TO DAY SECTION
   allTasks.forEach((task) => {
-    if (compareTaskDueDate(task.taskDueDate, day) === 0) {
+    if (compareTaskDate(task.taskDueDate, day) === 0) {
       let taskElement = convertTaskToHTML(task);
       const taskDivider = document.createElement("hr");
       taskDivider.classList.add(
@@ -92,7 +94,7 @@ const createDaySection = (day) => {
  * @param day
  * @returns An h2 html title element with the formatted date and day of the week. Used in the upcoming section.
  */
-const createDaySectionTitle = (day) => {
+export const createDaySectionTitle = (day) => {
   // GET DAY OF WEEK FROM DATE
   let dayOfWeek = getDay(day);
   let dayOfWeekFormatted = formatDayOfWeek(dayOfWeek);

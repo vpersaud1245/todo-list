@@ -156,6 +156,7 @@ const handleToggleCompleteBtnClick = (e) => {
 
   // ADD TASK TO COMPLETED PROJECTS
   task.setAssignedProject("Completed");
+  console.log(`completed task ${JSON.stringify(task)}`);
   addTaskToProject(task, "Completed");
 
   // REMOVE TASK ELEMENTS
@@ -194,19 +195,19 @@ export const getAllTasks = () => {
 };
 
 /**
- * Compares task due date to another date
- * @param taskDueDate task due date string in format YYYY-DD-MM
- * @param dateToCompare date type object of date to compare to
+ * Compares task duedate/completion date to another date
+ * @param {String} taskDate task duedate/completion date string in format YYYY-DD-MM
+ * @param {Date} dateToCompare date type object of date to compare to
  * @returns  (-1) if task due date is before date
  * @returns (0) if task due date and date are the same
  * @returns (1) if task due date is after date
  */
-export const compareTaskDueDate = (taskDuedate, dateToCompare) => {
-  let dueDateSplit = taskDuedate.split("-");
-  let dueDateYear = dueDateSplit[0];
-  let dueDateMonth = dueDateSplit[1] - 1; //Subtract month by one as month is indexed from zero
-  let dueDateDay = dueDateSplit[2];
-  let dueDate = new Date(dueDateYear, dueDateMonth, dueDateDay);
+export const compareTaskDate = (taskDate, dateToCompare) => {
+  let taskDateSplit = taskDate.split("-");
+  let dueDateYear = taskDateSplit[0];
+  let dueDateMonth = taskDateSplit[1] - 1; //Subtract month by one as month is indexed from zero
+  let dueDateDay = taskDateSplit[2];
+  let taskDateObject = new Date(dueDateYear, dueDateMonth, dueDateDay);
   let dateToCompareYear = dateToCompare.getFullYear();
   let dateToCompareMonth = dateToCompare.getMonth();
   let dateToCompareDay = dateToCompare.getDate();
@@ -215,10 +216,7 @@ export const compareTaskDueDate = (taskDuedate, dateToCompare) => {
     dateToCompareMonth,
     dateToCompareDay
   );
-  console.log(dueDate);
-  console.log(dateToCompareNoTime);
-  console.log(compareAsc(dueDate, dateToCompareNoTime));
-  return compareAsc(dueDate, dateToCompareNoTime);
+  return compareAsc(taskDateObject, dateToCompareNoTime);
 };
 
 /**

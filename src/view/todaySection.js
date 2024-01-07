@@ -2,7 +2,7 @@ import {
   addTaskToProject,
   clearProjectTaskList,
 } from "../controller/projectController";
-import { getAllTasks, compareTaskDueDate } from "../controller/taskController";
+import { getAllTasks, compareTaskDate } from "../controller/taskController";
 import { reloadProjectSection } from "./projectSection";
 
 export const renderTodaySection = () => {
@@ -10,7 +10,7 @@ export const renderTodaySection = () => {
   let tasks = getAllTasks();
 
   tasks.forEach((task) => {
-    let dateComparisonValue = compareTaskDueDate(task.taskDueDate, new Date());
+    let dateComparisonValue = compareTaskDate(task.taskDueDate, new Date());
     if (dateComparisonValue === 0) {
       addTaskToProject(task, "Today");
     }

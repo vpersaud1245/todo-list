@@ -10,27 +10,29 @@ import {
 } from "./view/sidebar";
 import { getAllTasks } from "./controller/taskController";
 
+// UPDATE PROJECTS IF LOCAL STORAGE IS NOT EMPTY
 if (localStorage.getItem("projects") !== null) {
   projectRepo.updateProjectRepoFromLocalStorage();
+} else {
+  // CREATE AND ADD DEFAULT PROJECTS
+  const inbox = new Project("Inbox", "");
+  projectRepo.addProjectToRepo(inbox);
+  projectRepo.addProjectToRepo(new Project("Today", ""));
+  projectRepo.addProjectToRepo(new Project("Upcoming", ""));
+  projectRepo.addProjectToRepo(new Project("Completed", ""));
+  // ADD TEST DATA
+  let washCar = new Task("Wash Car", "", "2023-12-13", "Priority", "Inbox");
+  inbox.addTask(washCar);
+  inbox.addTask(
+    new Task("Clean House", "Dust House", "2023-12-28", "Priority", "Inbox")
+  );
+  inbox.addTask(new Task("Test", "", "2024-01-05", "Priority", "Inbox"));
+
+  // UPDATE LOCAL STORAGE
+  projectRepo.updateLocalStorage();
 }
 
-// CREATE AND ADD INBOX TO PROJECT REPO
-// const inbox = new Project("Inbox", "");
-// projectRepo.addProjectToRepo(inbox);
-// projectRepo.addProjectToRepo(new Project("Today", ""));
-// projectRepo.addProjectToRepo(new Project("Upcoming", ""));
-// projectRepo.addProjectToRepo(new Project("Completed", ""));
 // projectRepo.addProjectToRepo(new Project("Chores", "Blue"));
-
-// //TEST DATA
-// let washCar = new Task("Wash Car", "", "2023-12-13", "Priority", "Inbox");
-// inbox.addTask(washCar);
-// inbox.addTask(
-//   new Task("Clean House", "Dust House", "2023-12-28", "Priority", "Inbox")
-// );
-// inbox.addTask(new Task("Test", "", "2024-01-05", "Priority", "Inbox"));
-
-// projectRepo.updateLocalStorage();
 
 console.log(projectRepo.getAllProjects());
 renderProjectSection("Inbox");

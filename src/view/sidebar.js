@@ -5,6 +5,7 @@ import {
 import { reloadProjectSection, renderProjectSection } from "./projectSection";
 import { renderTodaySection } from "./todaySection";
 import { renderUpcomingSection } from "./upcomingSection";
+import { renderCompletedSection } from "./completedSection";
 
 export const addUserProjectsToSidebar = () => {
   let userProjects = getUserProjects();
@@ -47,7 +48,8 @@ export const addNavListButtonEvents = () => {
   //DISPLAY COMPLETED SECTION LISTENER
   const completedNavBtn = document.querySelector(".nav-list-item__completed");
   completedNavBtn.onclick = (e) => {
-    renderClickedSection(e, sidebar);
+    renderCompletedSection();
+    toggleSideBar(sidebar, "close");
   };
 
   // DISPLAY PROJECT SECTIONS LISTENER

@@ -1,12 +1,12 @@
 class Task {
-  constructor(name, description, dueDate, priority, project) {
+  constructor(name, description, dueDate, priority, project, completionDate) {
     this.taskID = generateTaskID();
     this.taskName = name;
     this.taskDescription = description;
     this.taskDueDate = dueDate;
     this.taskPriority = priority;
     this.assignedProject = project;
-    this.completionDate = "";
+    this.completionDate = completionDate;
   }
 
   static createFromObject(obj) {
@@ -15,7 +15,8 @@ class Task {
       obj.taskDescription,
       obj.taskDueDate,
       obj.taskPriority,
-      obj.assignedProject
+      obj.assignedProject,
+      obj.completionDate
     );
   }
 

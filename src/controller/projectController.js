@@ -3,8 +3,7 @@ import { convertTaskToHTML } from "./taskController";
 
 // RETURNS LIST OF TASKS CONVERTED TO HTML ELEMENTS
 const getHTMLTaskElements = (projectName) => {
-  let project = projectRepo.getProjectFromName(projectName);
-  let projectTaskList = project.getTaskList();
+  let projectTaskList = getProjectTasks(projectName);
   if (projectTaskList.length > 0) {
     let htmlTaskList = convertTaskListToHtml(projectTaskList);
     return htmlTaskList;
@@ -102,6 +101,17 @@ const clearProjectTaskList = (projectName) => {
   project.clearTaskList();
 };
 
+/**
+ * Gets all tasks for a project
+ * @param {String} projectName
+ * @returns {Array} An Array of task objects
+ */
+const getProjectTasks = (projectName) => {
+  let project = projectRepo.getProjectFromName(projectName);
+  let projectTaskList = project.getTaskList();
+  return projectTaskList;
+};
+
 export {
   getHTMLTaskElements,
   getProjectNames,
@@ -112,4 +122,5 @@ export {
   clearProjectTaskList,
   isUserProject,
   removeTaskFromProject,
+  getProjectTasks,
 };
