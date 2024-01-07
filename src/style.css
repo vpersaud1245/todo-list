@@ -202,6 +202,9 @@ video {
 .project-list-item__icon {
   font-size: 20px;
 }
+
+/* ----- END SIDEBAR ----- */
+
 /*
   ----- MAIN -----
 */
@@ -213,7 +216,7 @@ video {
 }
 
 /*
-  ----- SECTION LIST -----
+  ----- SECTION TASK LIST -----
 */
 
 .section__title {

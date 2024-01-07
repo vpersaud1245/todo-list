@@ -27,6 +27,14 @@ const addTaskToProject = (task, projectName) => {
   selectedProject.addTask(task);
 };
 
+const removeTaskFromProject = (task, projectName) => {
+  let project = projectRepo.getProjectFromName(projectName);
+  let taskID = task.taskID;
+  let projectTaskListIDs = project.taskList.map((task) => task.taskID);
+  let idIndex = projectTaskListIDs.indexOf(taskID);
+  project.taskList.splice(idIndex, 1);
+};
+
 /**
  * Returns an array of project names
  */
@@ -103,4 +111,5 @@ export {
   createProjectListElement,
   clearProjectTaskList,
   isUserProject,
+  removeTaskFromProject,
 };

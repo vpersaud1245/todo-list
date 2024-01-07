@@ -1,6 +1,10 @@
 import { compareAsc } from "date-fns";
 import calendarIcon from "../assets/calendar-icon.svg";
 import * as projectRepo from "../model/projectRepo";
+import {
+  clearProjectTaskList,
+  removeTaskFromProject,
+} from "./projectController";
 
 // CONVERT TASK OBJECT TO HTML ELEMENT
 export const convertTaskToHTML = (task) => {
@@ -8,6 +12,9 @@ export const convertTaskToHTML = (task) => {
   const taskElement = document.createElement("li");
   const toggleCompleteBtn = document.createElement("button");
   const taskInfoElement = document.createElement("div");
+
+  // ADD TASK ID TO ELEMENT
+  taskElement.id = task.taskID;
 
   // ADD ELEMENT CLASSES
   taskElement.classList.add("section-list__task");
@@ -55,6 +62,11 @@ export const convertTaskToHTML = (task) => {
   if (task.taskPriority !== "Priority") {
     setToggleCompelteBtnPriorityStyle(task.taskPriority, toggleCompleteBtn);
   }
+
+  // APPEND TOGGLE COMPLETE BTN HANDLER
+  toggleCompleteBtn.onclick = (e) => {
+    handleToggleCompleteBtnClick(e);
+  };
 
   // APPEND ELEMENTS
   taskElement.append(toggleCompleteBtn, taskInfoElement);
@@ -115,6 +127,28 @@ const setToggleCompleteBtnColor = (
 
 // ----- END PRIORITY CLR SELECTOR HELPER FUNCTIONS ----- //
 
+/*
+  ----- REMOVE TASK BTN EVENT HANDLERS -----
+*/
+
+const handleToggleCompleteBtnClick = (e) => {
+  let taskElement = e.currentTarget.parentElement;
+  let taskDivider = taskElement.nextSibling;
+  let taskID = taskElement.id;
+  let task = getTaskByID(taskID);
+  let assignedProject = task.assignedProject;
+  removeTaskFromProject(task, assignedProject);
+  taskElement.remove();
+  taskDivider.remove();
+};
+
+/*
+  ----- UTILITY FUNCTIONS -----
+ */
+/**
+ *
+ * @returns {Array} An array of all tasks
+ */
 export const getAllTasks = () => {
   let taskList = [];
   let projectList = projectRepo.getAllProjects();
@@ -161,4 +195,19 @@ export const compareTaskDueDate = (taskDuedate, dateToCompare) => {
   console.log(dateToCompareNoTime);
   console.log(compareAsc(dueDate, dateToCompareNoTime));
   return compareAsc(dueDate, dateToCompareNoTime);
+};
+
+/**
+ * Returns the task object that matches the id passed in
+ * @param {String} taskID
+ * @returns {taskObject}
+ */
+const getTaskByID = (taskID) => {
+  let allTasks = getAllTasks();
+  for (let i = 0; i < allTasks.length; i++) {
+    let task = allTasks[i];
+    if (task.taskID === taskID) {
+      return task;
+    }
+  }
 };

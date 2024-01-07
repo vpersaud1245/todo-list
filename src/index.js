@@ -20,12 +20,12 @@ projectRepo.addProjectToRepo(createProject("Completed"));
 projectRepo.addProjectToRepo(createProject("Chores", "Blue"));
 
 //TEST DATA
-let washCar = createTask("Wash Car", "", "2023-12-13", "Priority");
+let washCar = createTask("Wash Car", "", "2023-12-13", "Priority", "Inbox");
 inbox.addTask(washCar);
 inbox.addTask(
-  createTask("Clean House", "Dust House", "2023-12-28", "Priority")
+  createTask("Clean House", "Dust House", "2023-12-28", "Priority", "Inbox")
 );
-inbox.addTask(createTask("Test", "", "2024-01-05", "Priority"));
+inbox.addTask(createTask("Test", "", "2024-01-05", "Priority", "Inbox"));
 
 renderProjectSection("Inbox");
 // renderAddTaskForm();
@@ -64,8 +64,17 @@ console.log(getAllTasks());
  * Make select 2 box (optional)
  * Add all hover effects
  * Make the add task form automatically choose dates when creating tasks on today and upcoming
+ * Add way to update tasks
+ * Add way to complete tasks
+ * sort tasks by priority
  */
 
 /**
  * Finish adding listeners to display pages when nav btn is clicked
+ */
+
+/**
+ * To complete a task the task must be removed from the html as well as from the project task list
+ * The first step should be to remove it from the project repo task list. This will stop it from populating on the today section.
+ * The next step should be to remove the html element from the current section as all other sections should be updated on the reload.
  */

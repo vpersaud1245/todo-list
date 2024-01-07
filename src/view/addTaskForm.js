@@ -274,7 +274,13 @@ const formSubmitBtnOnClickHandler = () => {
 
   if (validateAddTaskForm(taskName)) {
     // CREATE TASK OBJECT
-    let task = createTask(taskName, taskDescription, taskDueDate, taskPriority);
+    let task = createTask(
+      taskName,
+      taskDescription,
+      taskDueDate,
+      taskPriority,
+      selectedProject
+    );
     console.log(task); //LOG TASK OBJ *****
 
     // ADD TASK TO SELECTED PROJECT
