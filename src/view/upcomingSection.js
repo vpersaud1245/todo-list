@@ -1,4 +1,11 @@
-import { add, format, getDay, isToday, isTomorrow } from "date-fns";
+import {
+  add,
+  format,
+  getDay,
+  isToday,
+  isTomorrow,
+  isYesterday,
+} from "date-fns";
 import {
   createAddTaskBtn,
   createProjectSection,
@@ -115,6 +122,12 @@ export const createDaySectionTitle = (day) => {
   // ADDS TOMORROW TO TITLE TEXT CONTENT IF DATE IS TOMORROW
   if (isTomorrow(day)) {
     sectionTitle.textContent = `${dayFormatted} ‧ Tomorrow ‧  ${dayOfWeekFormatted}`;
+    return sectionTitle;
+  }
+
+  // ADDS YESTERDAY TO TITLE TEXT CONTENT IF DATE IS YESTERDAY
+  if (isYesterday(day)) {
+    sectionTitle.textContent = `${dayFormatted} ‧ Yesterday ‧  ${dayOfWeekFormatted}`;
     return sectionTitle;
   }
 

@@ -151,7 +151,8 @@ const handleToggleCompleteBtnClick = (e) => {
 
   // SET TASK COMPLETION DATE
   let completionDate = new Date();
-  let completionDateFormatted = format(completionDate, "yyyy-dd-MM");
+  let completionDateFormatted = format(completionDate, "yyyy-MM-dd");
+  console.log(completionDateFormatted);
   task.setCompletionDate(completionDateFormatted);
 
   // ADD TASK TO COMPLETED PROJECTS
@@ -181,11 +182,9 @@ export const getAllTasks = () => {
     // If statement skips default projects (Tomorrow/Upcoming/Completed)
     if (i < 1 || i > 3) {
       let project = projectList[i];
-      console.log(`project: ${project}`);
       let projectTaskList = project.getTaskList();
       if (projectTaskList.length > 0) {
         projectTaskList.forEach((task) => {
-          console.log(`task: ${task}`);
           taskList.push(task);
         });
       }
@@ -196,7 +195,7 @@ export const getAllTasks = () => {
 
 /**
  * Compares task duedate/completion date to another date
- * @param {String} taskDate task duedate/completion date string in format YYYY-DD-MM
+ * @param {String} taskDate task duedate/completion date string in format YYYY-MM-DD
  * @param {Date} dateToCompare date type object of date to compare to
  * @returns  (-1) if task due date is before date
  * @returns (0) if task due date and date are the same
@@ -216,6 +215,11 @@ export const compareTaskDate = (taskDate, dateToCompare) => {
     dateToCompareMonth,
     dateToCompareDay
   );
+  // console.log(`Date Compare Function:
+  // TaskDate: ${format(taskDateObject, "MM-dd-yyyy")}
+  // CompareDate: ${format(dateToCompareNoTime, "MM-dd-yyyy")}
+  // result: ${compareAsc(taskDateObject, dateToCompareNoTime)}`);
+
   return compareAsc(taskDateObject, dateToCompareNoTime);
 };
 

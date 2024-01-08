@@ -8,6 +8,7 @@ import { Task } from "../model/task";
 import { getAllTasks } from "../controller/taskController";
 import { renderTodaySection } from "./todaySection";
 import { renderUpcomingSection } from "./upcomingSection";
+import { renderCompletedSection } from "./completedSection";
 
 export const renderAddTaskForm = () => {
   // CREATE FORM ELEMENTS
@@ -248,9 +249,9 @@ const createProjectSelectorOption = (projectName) => {
 // ----- FORM CANCEL BTN HANDLER -----
 
 const cancelBtnOnClickHandler = () => {
-  const addTaskForm = document.querySelector(".add-task-form");
-  addTaskForm.remove();
-  const addTaskBtn = createAddTaskBtn();
+  // const addTaskForm = document.querySelector(".add-task-form");
+  // addTaskForm.remove();
+  // const addTaskBtn = createAddTaskBtn();
   // RELOAD SECTION DISPLAY
   let displayedSectionName = document.querySelector(".section").id;
   reloadSectionDisplay(displayedSectionName);
@@ -314,6 +315,10 @@ const reloadSectionDisplay = (displayedSectionName) => {
   }
   if (displayedSectionName === "Upcoming") {
     renderUpcomingSection();
+    return;
+  }
+  if (displayedSectionName === "Completed") {
+    renderCompletedSection();
     return;
   }
   reloadProjectSection(displayedSectionName);

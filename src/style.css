@@ -298,6 +298,52 @@ video {
   margin: 3px 0 10px 0;
 }
 
+/*  ----- COMPLETED SECTION STYLES -----  */
+
+.section__day-sections--completed {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-list__completed-task {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.completed-task__icon {
+  height: 50px;
+  width: 50px;
+}
+
+.completed-task__info {
+  font-size: 14px;
+  color: var(--pri-font-color);
+}
+
+.completed-task-info__user {
+  font-weight: 700;
+}
+
+.completed-task-info__task-name {
+  color: #999;
+}
+
+/* DEFAULT MESSAGE STYLES */
+.completed-section__empty-message {
+  font-size: 15px;
+  color: var(--pri-font-color);
+}
+
+.completed-task-section__default-message-divider {
+  color: var(--task-divider-color);
+  background-color: var(--task-divider-color);
+  border: none;
+  height: 1px;
+  margin: 10px 0;
+}
+
 /*
   ----- ADD TASK BUTTON -----
 */

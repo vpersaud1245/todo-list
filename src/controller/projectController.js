@@ -28,10 +28,8 @@ const addTaskToProject = (task, projectName) => {
 
 const removeTaskFromProject = (task, projectName) => {
   let project = projectRepo.getProjectFromName(projectName);
-  console.log(`project before removal ${project.taskList}`);
-  let taskName = task.taskName;
-  project.removeTask(taskName);
-  console.log(`project after removal: ${project.taskList}`);
+  let taskID = task.taskID;
+  project.removeTask(taskID);
 };
 
 /**

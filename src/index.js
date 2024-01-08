@@ -19,7 +19,8 @@ if (localStorage.getItem("projects") !== null) {
   projectRepo.addProjectToRepo(inbox);
   projectRepo.addProjectToRepo(new Project("Today", ""));
   projectRepo.addProjectToRepo(new Project("Upcoming", ""));
-  projectRepo.addProjectToRepo(new Project("Completed", ""));
+  let completed = new Project("Completed", "");
+  projectRepo.addProjectToRepo(completed);
   // ADD TEST DATA
   let washCar = new Task("Wash Car", "", "2023-12-13", "Priority", "Inbox");
   inbox.addTask(washCar);
@@ -27,6 +28,63 @@ if (localStorage.getItem("projects") !== null) {
     new Task("Clean House", "Dust House", "2023-12-28", "Priority", "Inbox")
   );
   inbox.addTask(new Task("Test", "", "2024-01-05", "Priority", "Inbox"));
+
+  //COMPLETED SECTION TESTING
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-06")
+    );
+  }, 10);
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-05")
+    );
+  }, 10);
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-05")
+    );
+  }, 10);
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-04")
+    );
+  }, 10);
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-03")
+    );
+  }, 10);
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-02")
+    );
+  }, 10);
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-02")
+    );
+  }, 10);
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-01")
+    );
+  }, 10);
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2023-12-31")
+    );
+  }, 10);
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2023-12-30")
+    );
+  }, timeout);
+  setTimeout(() => {
+    completed.addTask(
+      new Task("Scrub", "", "", "Priority", "Completed", "2023-10-11")
+    );
+  }, timeout);
 
   // UPDATE LOCAL STORAGE
   projectRepo.updateLocalStorage();
@@ -59,8 +117,6 @@ toggle.onclick = (e) => {
   addUserProjectsToSidebar();
   addNavListButtonEvents();
 };
-
-console.log(getAllTasks());
 
 /**
  * Make task due date change color if within the week or tomorrow and make it say the actual day if within the week
