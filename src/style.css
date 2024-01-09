@@ -59,7 +59,7 @@ video {
   width: 32px;
   display: grid;
   place-items: center;
-  background-color: var(--toggle-sidebar-btn-clr);
+  background-color: transparent;
   border: none;
   border-radius: 5px;
 }
@@ -221,7 +221,7 @@ video {
 
 .section__title {
   font-weight: 700;
-  font-size: 20px;
+  font-size: 26px;
   margin-bottom: 30px;
 }
 
@@ -494,3 +494,110 @@ video {
 }
 
 /* ----- ADD TASK FORM END ----- */
+
+/*
+  ----- ADD PROJECT MODAL -----
+*/
+
+.add-project-modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* height: 300px; */
+  width: 85%;
+  max-width: 760px;
+  border-radius: 10px;
+  border: none;
+  color: var(--pri-font-color);
+  font-size: 14px;
+}
+
+.add-project-modal::backdrop {
+  background-color: rgb(32, 32, 32, 0.6);
+}
+
+.add-project-modal__header {
+  padding: 16px 8px;
+}
+
+.add-project-modal__title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.add-project-modal__divider {
+  color: rgb(221, 221, 221);
+  background-color: rgb(221, 221, 221);
+  border: none;
+  height: 1px;
+}
+
+.add-project-modal__divider--bottom {
+  margin: 0 -16px;
+}
+
+.modal__add-project-form {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.add-project-form__item {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.add-project-form__label {
+  font-weight: 700;
+}
+
+.add-project-form__input,
+.add-project-form__selector {
+  padding: 4px;
+  font-weight: 400;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgb(221, 221, 221);
+}
+
+.add-project-form__input:focus,
+.add-project-form__selector:focus {
+  border: 1px solid rgb(128, 128, 128);
+}
+
+.add-project-form__buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.add-project-form__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 13px;
+  border-radius: 5px;
+  height: 32px;
+  padding: 0 12px;
+  min-width: 68px;
+  font-weight: 500;
+}
+
+.add-project-form__button--cancel-button {
+  background-color: rgb(245, 245, 245);
+  color: rgb(68, 68, 68);
+}
+
+.add-project-form__button--cancel-button:hover {
+  background-color: rgb(229, 229, 229);
+  color: rgb(26, 26, 26);
+}
+
+.add-project-form__button--add-button {
+  background-color: rgb(164, 169, 176);
+  color: rgb(255, 255, 255);
+}

@@ -61,6 +61,16 @@ export const addNavListButtonEvents = () => {
     };
   });
 
+  // DISPLAY ADD PROJECT MODAL
+  const addProjectNavBtn = document.querySelector(
+    ".project-menu__btn-icon--add-project"
+  );
+
+  addProjectNavBtn.onclick = (e) => {
+    const addProjectModal = document.querySelector(".add-project-modal");
+    addProjectModal.showModal();
+  };
+
   // CLOSE SIDEBAR LISTENERS
   closeSideBarBtn.onclick = (e) => {
     toggleSideBar(sidebar, "close");

@@ -88,5 +88,61 @@
 
     <!--  MAIN  -->
     <main class="main"></main>
+
+    <!--  ADD PROJECT MODAL  -->
+    <dialog class="add-project-modal">
+      <div class="add-project-modal__header">
+        <h2 class="add-project-modal__title">Add Project</h2>
+      </div>
+      <hr class="add-project-modal__divider" />
+      <form action="javascript:void(0);" class="modal__add-project-form">
+        <div class="add-project-form__item">
+          <label
+            class="add-project-form__label add-project-form__label--project-name"
+            for="project-name"
+            >Name</label
+          >
+          <input
+            class="add-project-form__input add-project-form__input--project-name"
+            type="text"
+            name="project-name"
+          />
+        </div>
+
+        <div class="add-project-form__item">
+          <label
+            class="add-project-form__label add-project-form__label--project-color"
+            for="project-color"
+            >Color</label
+          >
+          <select
+            class="add-project-form__selector add-project-form-selector--project-color"
+            name="project-color"
+          >
+            <option value="blue">Blue</option>
+            <option value="red">Red</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+          </select>
+        </div>
+
+        <hr
+          class="add-project-modal__divider add-project-modal__divider--bottom"
+        />
+
+        <div class="add-project-form__buttons">
+          <button
+            class="add-project-form__button add-project-form__button--cancel-button"
+          >
+            Cancel
+          </button>
+          <button
+            class="add-project-form__button add-project-form__button--add-button"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
