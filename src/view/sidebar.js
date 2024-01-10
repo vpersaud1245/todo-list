@@ -6,6 +6,7 @@ import { reloadProjectSection, renderProjectSection } from "./projectSection";
 import { renderTodaySection } from "./todaySection";
 import { renderUpcomingSection } from "./upcomingSection";
 import { renderCompletedSection } from "./completedSection";
+import { renderAddProjectForm } from "./addProjectForm";
 
 export const addUserProjectsToSidebar = () => {
   let userProjects = getUserProjects();
@@ -67,8 +68,7 @@ export const addNavListButtonEvents = () => {
   );
 
   addProjectNavBtn.onclick = (e) => {
-    const addProjectModal = document.querySelector(".add-project-modal");
-    addProjectModal.showModal();
+    renderAddProjectForm();
   };
 
   // CLOSE SIDEBAR LISTENERS
@@ -85,7 +85,7 @@ export const addNavListButtonEvents = () => {
 /*
   ----- HELPER FUNCTIONS -----
 */
-const toggleSideBar = (sidebar, state) => {
+export const toggleSideBar = (sidebar, state) => {
   if (state === "open") {
     sidebar.classList.add("active");
     return;
@@ -106,7 +106,7 @@ const renderClickedSection = (e, sidebar) => {
   toggleSideBar(sidebar, "close");
 };
 
-const hideSidebarOnOutsideClick = (e) => {
+export const hideSidebarOnOutsideClick = (e) => {
   const sidebar = document.querySelector(".sidebar");
   const isClickInsideSidebar = sidebar.contains(e.target);
   if (!isClickInsideSidebar) {

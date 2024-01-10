@@ -274,7 +274,7 @@ const formSubmitBtnOnClickHandler = () => {
     ".add-task-form__input--project-selector"
   ).value;
 
-  if (validateAddTaskForm(taskName)) {
+  if (validateForm(taskName)) {
     // CREATE TASK OBJECT
     let task = new Task(
       taskName,
@@ -301,7 +301,7 @@ const formSubmitBtnOnClickHandler = () => {
   }
 };
 
-const validateAddTaskForm = (requriedFieldValue) => {
+export const validateForm = (requriedFieldValue) => {
   if (requriedFieldValue !== "") {
     return true;
   }
