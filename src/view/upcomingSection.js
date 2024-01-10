@@ -27,6 +27,12 @@ export const renderUpcomingSection = () => {
   // CLEAR MAIN ELEMENTS TO RESET
   main.innerHTML = "";
 
+  // REMOVE PROJECT OPTION BUTTON
+  const editProjectBtn = document.querySelector(
+    ".header__edit-user-project-btn"
+  );
+  editProjectBtn.style.display = "none";
+
   // CREATE SECTION ELEMENT
   const section = createProjectSection("Upcoming");
 

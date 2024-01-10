@@ -18,6 +18,12 @@ export const renderCompletedSection = () => {
   // GET MAIN ELEMENT
   const main = document.querySelector(".main");
 
+  // REMOVE PROJECT OPTION BUTTON
+  const editProjectBtn = document.querySelector(
+    ".header__edit-user-project-btn"
+  );
+  editProjectBtn.style.display = "none";
+
   // CLEAR MAIN ELEMENTS TO RESET
   main.innerHTML = "";
 

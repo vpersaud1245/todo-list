@@ -36,6 +36,11 @@ export const renderProjectSection = (projectName) => {
   console.log(`section id: ${section.id}`);
   if (section.id.length > 1) {
     addOptionsBtnToHeader();
+  } else {
+    const editProjectBtn = document.querySelector(
+      ".header__edit-user-project-btn"
+    );
+    editProjectBtn.style.display = "none";
   }
 
   section.append(sectionTitle, sectionList, addTaskBtn);

@@ -253,7 +253,8 @@ const cancelBtnOnClickHandler = () => {
   // addTaskForm.remove();
   // const addTaskBtn = createAddTaskBtn();
   // RELOAD SECTION DISPLAY
-  let displayedSectionName = document.querySelector(".section").id;
+  let displayedSectionName =
+    document.querySelector(".section__title").textContent;
   reloadSectionDisplay(displayedSectionName);
 };
 
@@ -292,7 +293,8 @@ const formSubmitBtnOnClickHandler = () => {
     updateLocalStorage();
 
     // RELOAD SECTION DISPLAY
-    let displayedSectionName = document.querySelector(".section").id;
+    let displayedSectionName =
+      document.querySelector(".section__title").textContent;
     reloadSectionDisplay(displayedSectionName);
     // Log all tasks for testing *****
     console.log(getAllTasks());
