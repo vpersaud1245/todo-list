@@ -62,6 +62,8 @@ export const addNavListButtonEvents = () => {
     };
   });
 
+  // PROJECT LIST DROPDOWN
+
   // DISPLAY ADD PROJECT MODAL
   const addProjectNavBtn = document.querySelector(
     ".project-menu__btn-icon--add-project"

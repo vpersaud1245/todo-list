@@ -185,12 +185,6 @@ video {
   width: 20px;
 }
 
-.project-menu__btn-icon--dropdown {
-  height: 15px;
-  width: 15px;
-  transform: rotate(90deg);
-}
-
 /* ----- SIDEBAR PROJECT LIST ----- */
 
 .project-list__item {
