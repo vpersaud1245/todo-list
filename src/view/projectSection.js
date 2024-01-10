@@ -134,4 +134,9 @@ const addOptionsBtnToHeader = () => {
     ".header__edit-user-project-btn"
   );
   editProjectBtn.style.display = "block";
+
+  editProjectBtn.onclick = (e) => {
+    const editProjectMenu = document.querySelector(".edit-project-menu");
+    editProjectMenu.style.display = "flex";
+  };
 };
