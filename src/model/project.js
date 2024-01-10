@@ -8,9 +8,9 @@ class Project {
   }
   static createFromObject(obj) {
     const project = new Project(
-      obj.projectID,
       obj.projectName,
-      obj.projectColor
+      obj.projectColor,
+      obj.projectID
     );
     if (obj.taskList.length > 0) {
       project.taskList = obj.taskList.map((task) =>

@@ -31,6 +31,12 @@ export const renderProjectSection = (projectName) => {
   // CREATE ADD TASK BUTTON
   const addTaskBtn = createAddTaskBtn();
 
+  // IF SECTION IS USER PROJECT ADD OPTIONS BTN TO HEADER TO EDIT/DELETE PROJECT
+  console.log(`section id: ${section.id}`);
+  if (section.id.length > 1) {
+    addOptionsBtnToHeader();
+  }
+
   section.append(sectionTitle, sectionList, addTaskBtn);
   main.append(section);
 };
@@ -117,4 +123,15 @@ const handleAddTaskBtnClick = (e) => {
   allAddTaskBtns.forEach((button) => {
     button.remove();
   });
+};
+
+// ADD OPTIONS BTN TO HEADER
+/**
+ * Will add option button to header to edit/delete user projects
+ */
+const addOptionsBtnToHeader = () => {
+  const editProjectBtn = document.querySelector(
+    ".header__edit-user-project-btn"
+  );
+  editProjectBtn.style.display = "block";
 };
