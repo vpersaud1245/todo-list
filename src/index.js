@@ -15,11 +15,11 @@ if (localStorage.getItem("projects") !== null) {
   projectRepo.updateProjectRepoFromLocalStorage();
 } else {
   // CREATE AND ADD DEFAULT PROJECTS
-  const inbox = new Project("Inbox", "");
+  const inbox = new Project("Inbox", "", "1");
   projectRepo.addProjectToRepo(inbox);
-  projectRepo.addProjectToRepo(new Project("Today", ""));
-  projectRepo.addProjectToRepo(new Project("Upcoming", ""));
-  let completed = new Project("Completed", "");
+  projectRepo.addProjectToRepo(new Project("Today", "", "2"));
+  projectRepo.addProjectToRepo(new Project("Upcoming", "", "3"));
+  let completed = new Project("Completed", "", "4");
   projectRepo.addProjectToRepo(completed);
   // ADD TEST DATA
   let washCar = new Task("Wash Car", "", "2023-12-13", "Priority", "Inbox");
@@ -79,12 +79,12 @@ if (localStorage.getItem("projects") !== null) {
     completed.addTask(
       new Task("Scrub", "", "", "Priority", "Completed", "2023-12-30")
     );
-  }, timeout);
+  }, 10);
   setTimeout(() => {
     completed.addTask(
       new Task("Scrub", "", "", "Priority", "Completed", "2023-10-11")
     );
-  }, timeout);
+  }, 10);
 
   // UPDATE LOCAL STORAGE
   projectRepo.updateLocalStorage();

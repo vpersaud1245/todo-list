@@ -1,4 +1,8 @@
-import { addProjectToRepo, updateLocalStorage } from "../model/projectRepo";
+import {
+  addProjectToRepo,
+  getAllProjects,
+  updateLocalStorage,
+} from "../model/projectRepo";
 import { validateForm } from "./addTaskForm";
 import { reloadProjectSection } from "./projectSection";
 import { hideSidebarOnOutsideClick, toggleSideBar } from "./sidebar";
@@ -116,10 +120,11 @@ const formSubmitHandler = () => {
   if (validateForm(projectName)) {
     let project = new Project(projectName, projectColor);
     addProjectToRepo(project);
+    updateLocalStorage();
     closeModal();
     toggleSideBar(sidebar, "close");
     reloadProjectSection(projectName);
-    updateLocalStorage();
+
     return;
   }
 };

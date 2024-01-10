@@ -2,6 +2,7 @@ import addBtnSVG from "../assets/add-btn-icon.svg";
 import addBtnSVGWhite from "../assets/add-btn-icon--white.svg";
 import { getHTMLTaskElements } from "../controller/projectController";
 import { renderAddTaskForm } from "./addTaskForm";
+import { getProjectFromName } from "../model/projectRepo";
 
 export const renderProjectSection = (projectName) => {
   // GET MAIN ELEMENT
@@ -47,7 +48,8 @@ export const reloadProjectSection = (projectName) => {
 export const createProjectSection = (projectName) => {
   const section = document.createElement("div");
   section.classList.add("section");
-  section.id = projectName;
+  let projectID = getProjectFromName(projectName).projectID;
+  section.id = projectID;
   return section;
 };
 

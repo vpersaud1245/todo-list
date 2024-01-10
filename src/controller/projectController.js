@@ -76,6 +76,7 @@ const createProjectListElement = (project) => {
   let projectColor = project.projectColor;
 
   const listItem = document.createElement("li");
+  listItem.id = project.projectID;
   listItem.classList.add("project-list__item");
 
   const listIcon = document.createElement("span");
