@@ -3,6 +3,7 @@ import addBtnSVGWhite from "../assets/add-btn-icon--white.svg";
 import { getHTMLTaskElements } from "../controller/projectController";
 import { renderAddTaskForm } from "./addTaskForm";
 import { getProjectFromName } from "../model/projectRepo";
+import { addEditProjectListeners } from "./editProjectMenu";
 
 export const renderProjectSection = (projectName) => {
   // GET MAIN ELEMENT
@@ -136,7 +137,20 @@ const addOptionsBtnToHeader = () => {
   editProjectBtn.style.display = "block";
 
   editProjectBtn.onclick = (e) => {
-    const editProjectMenu = document.querySelector(".edit-project-menu");
-    editProjectMenu.style.display = "flex";
+    toggleProjectMenu();
   };
+};
+
+export const toggleProjectMenu = () => {
+  const editProjectMenu = document.querySelector(".edit-project-menu");
+  let menuDisplay = editProjectMenu.style.display;
+  if (menuDisplay === "" || menuDisplay === "none") {
+    editProjectMenu.style.display = "flex";
+    addEditProjectListeners();
+    return;
+  }
+  if (menuDisplay === "flex") {
+    editProjectMenu.style.display = "none";
+    return;
+  }
 };

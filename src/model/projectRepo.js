@@ -5,11 +5,20 @@ const addProjectToRepo = (projectToAdd) => {
   projects.push(projectToAdd);
 };
 
-const removeProjectFromRepo = (projectName) => {
-  let projectIndex = getProjectIndexfromName(projectName);
+const removeProjectFromRepo = (projectID) => {
+  let projectIndex = getProjectIndexfromID(projectID);
   if (projectIndex > -1) {
     projects.splice(projectIndex, 1);
   }
+};
+
+const getProjectFromID = (projectID) => {
+  let projectIndex = getProjectIndexfromID(projectID);
+  return projects[projectIndex];
+};
+
+const getProjectIndexfromID = (projectID) => {
+  return projects.map((project) => project.projectID).indexOf(projectID);
 };
 
 const getProjectIndexfromName = (projectName) => {
@@ -52,4 +61,5 @@ export {
   getAllProjects,
   updateProjectRepoFromLocalStorage,
   updateLocalStorage,
+  getProjectFromID,
 };

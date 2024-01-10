@@ -2,9 +2,10 @@ import {
   addProjectToRepo,
   getAllProjects,
   updateLocalStorage,
+  getProjectFromID,
 } from "../model/projectRepo";
 import { validateForm } from "./addTaskForm";
-import { reloadProjectSection } from "./projectSection";
+import { reloadProjectSection, toggleProjectMenu } from "./projectSection";
 import { hideSidebarOnOutsideClick, toggleSideBar } from "./sidebar";
 import { Project } from "../model/project";
 import { sub } from "date-fns";
@@ -12,6 +13,16 @@ import { sub } from "date-fns";
 export const renderAddProjectForm = () => {
   // GET ADD PROJECT FORM
   const addProjectModal = document.querySelector(".add-project-modal");
+
+  // SET TITLE TO 'ADD'
+  const formTitle = document.querySelector(".add-project-modal__title");
+  formTitle.textContent = "Add";
+
+  // SET SUBMIT BTN TEXT TO 'ADD'
+  const addProjectFormSubmitBtn = document.querySelector(
+    ".add-project-form__button--add-button"
+  );
+  addProjectFormSubmitBtn.textContent = "Add";
 
   // SHOW ADD PROJECT FORM
   addProjectModal.showModal();
@@ -51,12 +62,7 @@ export const renderAddProjectForm = () => {
   }, 0);
 
   //FORM SUBMIT LISTENER
-  const addProjectFormSubmitBtn = document.querySelector(
-    ".add-project-form__button--add-button"
-  );
-  addProjectFormSubmitBtn.onclick = (e) => {
-    formSubmitHandler();
-  };
+  addProjectFormSubmitBtn.addEventListener("click", formSubmitHandler);
 };
 
 const resetSubmitBtnColor = () => {
@@ -107,24 +113,43 @@ const hideModalOnOutsideClick = (e) => {
   }
 };
 
-const formSubmitHandler = () => {
+export const formSubmitHandler = () => {
+  const formSubmitBtn = document.querySelector(
+    ".add-project-form__button--add-button"
+  );
+  let projectId = document.querySelector(".section").id;
+  const formTitle = document.querySelector(".add-project-modal__title");
   let sidebar = document.querySelector(".sidebar");
-  let projectName = document.querySelector(
+  let projectNameValue = document.querySelector(
     ".add-project-form__input--project-name"
   ).value;
-  let projectColor = document.querySelector(
+  let projectColorValue = document.querySelector(
     ".add-project-form-selector--project-color"
   ).value;
-  console.log(`Project Name: ${projectName}, Project Color: ${projectColor}`);
+  console.log(
+    `Project Name: ${projectNameValue}, Project Color: ${projectColorValue}`
+  );
 
-  if (validateForm(projectName)) {
-    let project = new Project(projectName, projectColor);
-    addProjectToRepo(project);
-    updateLocalStorage();
-    closeModal();
-    toggleSideBar(sidebar, "close");
-    reloadProjectSection(projectName);
-
-    return;
+  if (validateForm(projectNameValue)) {
+    if (formTitle.textContent === "Add") {
+      let project = new Project(projectNameValue, projectColorValue);
+      addProjectToRepo(project);
+      updateLocalStorage();
+      closeModal();
+      toggleSideBar(sidebar, "close");
+      reloadProjectSection(projectNameValue);
+      return;
+    }
+    if (formTitle.textContent === "Edit") {
+      let project = getProjectFromID(projectId);
+      project.projectName = projectNameValue;
+      project.projectColor = projectColorValue;
+      updateLocalStorage();
+      closeModal();
+      toggleSideBar(sidebar, "close");
+      toggleProjectMenu();
+      reloadProjectSection(projectNameValue);
+      return;
+    }
   }
 };
