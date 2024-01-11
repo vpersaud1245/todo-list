@@ -11,6 +11,7 @@ import {
 } from "./view/sidebar";
 import { getAllTasks } from "./controller/taskController";
 import { addHeaderEventListeners } from "./view/header";
+import { format, sub } from "date-fns";
 
 // UPDATE PROJECTS IF LOCAL STORAGE IS NOT EMPTY
 if (localStorage.getItem("projects") !== null) {
@@ -24,67 +25,48 @@ if (localStorage.getItem("projects") !== null) {
   let completed = new Project("Completed", "", "4");
   projectRepo.addProjectToRepo(completed);
   // ADD TEST DATA
-  let washCar = new Task("Wash Car", "", "2023-12-13", "Priority", "Inbox");
+  let todayFormatted = format(new Date(), "yyyy-MM-dd");
+  let yesterdayFormatted = format(sub(new Date(), { days: 1 }), "yyyy-MM-dd");
+  let twoDaysAgoFormatted = format(sub(new Date(), { days: 2 }), "yyyy-MM-dd");
+  let fourDaysAgoFormatted = format(sub(new Date(), { days: 4 }), "yyyy-MM-dd");
+  let washCar = new Task(
+    "I hope you don't mind",
+    "",
+    todayFormatted,
+    "Priority",
+    "Inbox"
+  );
   inbox.addTask(washCar);
   inbox.addTask(
-    new Task("Clean House", "Dust House", "2023-12-28", "Priority", "Inbox")
+    new Task(
+      "I have added some tasks",
+      "For you to use as examples",
+      todayFormatted,
+      "Priority 1",
+      "Inbox"
+    )
   );
-  inbox.addTask(new Task("Test", "", "2024-01-05", "Priority", "Inbox"));
+  inbox.addTask(new Task("Enjoy!", "", todayFormatted, "Priority 2", "Inbox"));
 
   //COMPLETED SECTION TESTING
   setTimeout(() => {
     completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-06")
+      new Task("Scrub", "", "", "Priority", "Completed", yesterdayFormatted)
     );
   }, 10);
   setTimeout(() => {
     completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-05")
+      new Task("Wash", "", "", "Priority", "Completed", twoDaysAgoFormatted)
     );
   }, 10);
   setTimeout(() => {
     completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-05")
+      new Task("Rub", "", "", "Priority", "Completed", twoDaysAgoFormatted)
     );
   }, 10);
   setTimeout(() => {
     completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-04")
-    );
-  }, 10);
-  setTimeout(() => {
-    completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-03")
-    );
-  }, 10);
-  setTimeout(() => {
-    completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-02")
-    );
-  }, 10);
-  setTimeout(() => {
-    completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-02")
-    );
-  }, 10);
-  setTimeout(() => {
-    completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2024-01-01")
-    );
-  }, 10);
-  setTimeout(() => {
-    completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2023-12-31")
-    );
-  }, 10);
-  setTimeout(() => {
-    completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2023-12-30")
-    );
-  }, 10);
-  setTimeout(() => {
-    completed.addTask(
-      new Task("Scrub", "", "", "Priority", "Completed", "2023-10-11")
+      new Task("Soap", "", "", "Priority", "Completed", fourDaysAgoFormatted)
     );
   }, 10);
 
