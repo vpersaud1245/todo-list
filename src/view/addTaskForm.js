@@ -10,11 +10,11 @@ import { renderTodaySection } from "./todaySection";
 import { renderUpcomingSection } from "./upcomingSection";
 import { renderCompletedSection } from "./completedSection";
 
-export const renderAddTaskForm = () => {
+export const renderAddTaskForm = (e) => {
   // CREATE FORM ELEMENTS
   const addTaskForm = document.createElement("form");
   const formTopSection = createTopSection();
-  const formMiddleSection = createMiddleSection();
+  const formMiddleSection = createMiddleSection(e);
   const formDivider = document.createElement("hr");
   const formBottomSection = createBottomSection();
 
@@ -103,7 +103,8 @@ const taskNameOnInputHandler = (e) => {
 /*
   ------ MIDDLE SECTION -----
 */
-const createMiddleSection = () => {
+const createMiddleSection = (e) => {
+  const sectionName = document.querySelector(".section__title").textContent;
   // CREATE SECTION CONTAINER
   const formMiddleSection = document.createElement("div");
   formMiddleSection.classList.add("add-task-form__middle-section");
@@ -114,8 +115,26 @@ const createMiddleSection = () => {
   taskDueDateInput.classList.add("add-task-form__input--due-date");
   taskDueDateInput.id = "due-date-input";
 
-  // DEFAULT DUE DATE VALUE TO CURRENT DATE
+  // DEFAULT DUE DATE VALUE TO CURRENT DATE ON TODAY SECTION
   let currDateFormatted = format(new Date(), "yyyy-MM-dd");
+  if (sectionName === "Today") {
+    taskDueDateInput.value = currDateFormatted;
+  }
+
+  //DEFAULT DUE DATE TO UPCOMING DATE ON UPCOMING SECTION
+  let addTaskBtn = e.currentTarget;
+  if (sectionName === "Upcoming") {
+    let upcomingSectionSplit =
+      addTaskBtn.previousSibling.previousSibling.textContent.split(" ");
+    let upcomingSectionMonth = upcomingSectionSplit[0];
+    let upcomingSectionDay = upcomingSectionSplit[1];
+    let upcomingSectionYear = format(new Date(), "yyyy");
+    let upcomingSectionDate = new Date(
+      `${upcomingSectionMonth} ${upcomingSectionDay} ${upcomingSectionYear}`
+    );
+    let upcomingDateFormatted = format(upcomingSectionDate, "yyyy-MM-dd");
+    taskDueDateInput.value = upcomingDateFormatted;
+  }
 
   // ONLY ALLOW SELECTION FROM CURRENT DATE AND ON
   taskDueDateInput.min = currDateFormatted;

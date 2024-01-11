@@ -123,7 +123,7 @@ const addBtnIconHoverStyle = (addTaskBtn, addTaskBtnImg) => {
 const handleAddTaskBtnClick = (e) => {
   let section = document.querySelector(".section");
   let addTaskBtn = e.currentTarget;
-  let addTaskForm = renderAddTaskForm();
+  let addTaskForm = renderAddTaskForm(e);
   addTaskBtn.after(addTaskForm);
   let allAddTaskBtns = document.querySelectorAll(".section-list__add-task-btn");
   allAddTaskBtns.forEach((button) => {

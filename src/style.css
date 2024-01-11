@@ -90,7 +90,7 @@ video {
   font-weight: 700;
   color: #666;
   border-radius: 5px;
-  margin: 0 20px 0 auto;
+  margin: 0 30px 0 auto;
   display: none;
 }
 
@@ -318,6 +318,11 @@ video {
   background-color: white;
 }
 
+.task__toggle-task-complete-btn:hover {
+  cursor: pointer;
+  background-color: #e5e5e5;
+}
+
 .task__info {
   display: flex;
   flex-direction: column;
@@ -512,6 +517,11 @@ video {
   outline: none;
 }
 
+.add-task-form__input--due-date:hover,
+.add-task-form__input--priority-selector:hover {
+  cursor: pointer;
+}
+
 /* ----- ADD TASK FORM BOTTOM ----- */
 .add-task-form__divider {
   color: var(--form-border-color);
@@ -534,6 +544,10 @@ video {
   color: var(--sec-font-color);
 }
 
+.add-task-form__input--project-selector:hover {
+  cursor: pointer;
+}
+
 .add-task-form__submit-buttons {
   display: flex;
   font-size: 13px;
@@ -553,6 +567,11 @@ video {
 
 .submit-buttons__button--cancel {
   background-color: #f5f5f5;
+}
+
+.submit-buttons__button--cancel:hover {
+  cursor: pointer;
+  background-color: #e5e5e5;
 }
 
 .submit-buttons__button--submit {

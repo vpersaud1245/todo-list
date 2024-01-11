@@ -126,24 +126,13 @@ window.onresize = () => {
 
 /**
  * Make task due date change color if within the week or tomorrow and make it say the actual day if within the week
- * Add add task form validation (Submit button changes color to darker blue when valid) On larger screens make Cross out cursor appear when form is not valid
- * Add local storage. Default classes only load once aka if projects dont exist create them
  * Make select 2 box (optional)
- * Add all hover effects
+ * Add task hover effects
  * Make the add task form automatically choose dates when creating tasks on today and upcoming
  * Add way to update tasks
- * sort tasks by priority
  */
 
 /**
  * BASIC FEATURES
- * Add way to add projects
- * Add way to edit/delete projects on project section add 3 dots
  * Add way to edit Tasks
- */
-
-/**
- * Add add project form
- * When project name is not empty change color of button
- * Add event listener to dropdown project list
  */
