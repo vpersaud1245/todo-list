@@ -9,6 +9,7 @@ import { reloadProjectSection, toggleProjectMenu } from "./projectSection";
 import { hideSidebarOnOutsideClick, toggleSideBar } from "./sidebar";
 import { Project } from "../model/project";
 import { sub } from "date-fns";
+import { getAllTasks } from "../controller/taskController";
 
 export const renderAddProjectForm = () => {
   // GET ADD PROJECT FORM
@@ -144,7 +145,14 @@ export const formSubmitHandler = () => {
       let project = getProjectFromID(projectId);
       project.projectName = projectNameValue;
       project.projectColor = projectColorValue;
+      let allProjectTasks = project.taskList;
+      if (allProjectTasks.length > 0) {
+        allProjectTasks.forEach((task) => {
+          task.assignedProject = projectNameValue;
+        });
+      }
       updateLocalStorage();
+      console.log(getAllTasks());
       closeModal();
       toggleSideBar(sidebar, "close");
       toggleProjectMenu();

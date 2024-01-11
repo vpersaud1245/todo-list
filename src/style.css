@@ -97,6 +97,7 @@ video {
 .header__edit-user-project-btn:hover {
   background-color: #f5f5f5;
   color: black;
+  cursor: pointer;
 }
 
 .edit-project-menu {
@@ -201,6 +202,7 @@ video {
 
 .sidebar__list--nav > li:hover {
   cursor: pointer;
+  background-color: #eeeeee;
 }
 
 .nav-list__list-icon {
@@ -218,6 +220,11 @@ video {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.sidebar__project-menu:hover {
+  cursor: pointer;
+  background-color: #eeeeee;
 }
 
 .project-menu__title {
@@ -241,6 +248,10 @@ video {
   justify-content: center;
 }
 
+.project-menu__btn:hover {
+  cursor: pointer;
+}
+
 .project-menu__btn-icon {
   height: 20px;
   width: 20px;
@@ -252,6 +263,11 @@ video {
   display: flex;
   gap: 5px;
   align-items: center;
+}
+
+.project-list__item:hover {
+  cursor: pointer;
+  background-color: #eeeeee;
 }
 
 .project-list-item__icon {
@@ -268,6 +284,7 @@ video {
   padding: 0 50px;
   height: 100%;
   color: var(--pri-font-color);
+  transition: 300ms;
 }
 
 /*
@@ -287,6 +304,10 @@ video {
 .section-list__task {
   display: flex;
   gap: 10px;
+}
+
+.section-list__task:hover {
+  cursor: pointer;
 }
 
 .task__toggle-task-complete-btn {
@@ -655,4 +676,15 @@ video {
 .add-project-form__button--add-button {
   background-color: rgb(164, 169, 176);
   color: rgb(255, 255, 255);
+}
+
+@media (min-width: 768px) {
+  .active {
+    box-shadow: none;
+  }
+
+  .section {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 }

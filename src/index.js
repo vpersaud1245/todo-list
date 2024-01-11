@@ -7,8 +7,10 @@ import { renderAddTaskForm } from "./view/addTaskForm";
 import {
   addNavListButtonEvents,
   addUserProjectsToSidebar,
+  toggleSideBar,
 } from "./view/sidebar";
 import { getAllTasks } from "./controller/taskController";
+import { addHeaderEventListeners } from "./view/header";
 
 // UPDATE PROJECTS IF LOCAL STORAGE IS NOT EMPTY
 if (localStorage.getItem("projects") !== null) {
@@ -90,32 +92,36 @@ if (localStorage.getItem("projects") !== null) {
   projectRepo.updateLocalStorage();
 }
 
-// projectRepo.addProjectToRepo(new Project("Chores", "Blue"));
-
+// Show All Projects
 console.log(projectRepo.getAllProjects());
+
+// Render Starting Page
 renderProjectSection("Inbox");
+addHeaderEventListeners();
 
-// Add toggle to sidebar btns
-const toggleSideBar = (sidebar, state) => {
-  if (state === "open") {
-    sidebar.classList.add("active");
+let oldWindowWidth = window.innerWidth;
+// Toggle sidebar on window resize
+window.onresize = () => {
+  let newWindowWidth = window.innerWidth;
+  const sidebar = document.querySelector(".sidebar");
+  if (
+    newWindowWidth >= 768 &&
+    newWindowWidth > oldWindowWidth &&
+    oldWindowWidth < 768
+  ) {
+    toggleSideBar(sidebar, "open");
+    oldWindowWidth = newWindowWidth;
     return;
   }
-
-  if (state === "close") {
-    sidebar.classList.remove("active");
+  if (
+    newWindowWidth < 768 &&
+    oldWindowWidth > newWindowWidth &&
+    oldWindowWidth > 768
+  ) {
+    toggleSideBar(sidebar, "close");
+    oldWindowWidth = newWindowWidth;
     return;
   }
-};
-
-// SIDEBAR FUNCTIONS
-let sidebar = document.querySelector(".sidebar");
-const toggle = document.querySelector(".header__open-sidebar-btn");
-
-toggle.onclick = (e) => {
-  toggleSideBar(sidebar, "open");
-  addUserProjectsToSidebar();
-  addNavListButtonEvents();
 };
 
 /**

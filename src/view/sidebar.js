@@ -78,23 +78,32 @@ export const addNavListButtonEvents = () => {
     toggleSideBar(sidebar, "close");
   };
   /* Added a short timeout before attaching the click event listener to avoid immediate placement during the sidebar opening.
-  Without this delay, the listener could inadvertently trigger the sidebar closure, as it's initially triggered by the same button click that opens the sidebar. */
-  setTimeout(() => {
-    document.addEventListener("click", hideSidebarOnOutsideClick);
-  }, 0);
+  Without this delay, the listener could inadvertently trigger the sidebar closure, as it's initially triggered by the same button click that opens the sidebar. 
+  This only is needed on smaller screens where the sidebar is an overlay*/
+  if (window.innerWidth < 768) {
+    setTimeout(() => {
+      document.addEventListener("click", hideSidebarOnOutsideClick);
+    }, 0);
+  }
 };
 
 /*
   ----- HELPER FUNCTIONS -----
 */
 export const toggleSideBar = (sidebar, state) => {
+  const main = document.querySelector(".main");
   if (state === "open") {
+    if (window.innerWidth >= 768) {
+      main.style.marginLeft = "280px";
+    }
     sidebar.classList.add("active");
+    addNavListButtonEvents();
     return;
   }
 
   if (state === "close") {
     sidebar.classList.remove("active");
+    main.style.marginLeft = "0";
     // Event listener needs to be removed to allow sidebar to be opened again
     document.removeEventListener("click", hideSidebarOnOutsideClick);
     return;
