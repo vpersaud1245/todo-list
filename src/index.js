@@ -95,12 +95,12 @@ if (localStorage.getItem("projects") !== null) {
 // Show All Projects
 console.log(projectRepo.getAllProjects());
 
-// Render Starting Page
+// RENDER STARTING PAGES
 renderProjectSection("Inbox");
 addHeaderEventListeners();
 
+// TOGGLE SIDEBAR ON WINDOW RESIZE
 let oldWindowWidth = window.innerWidth;
-// Toggle sidebar on window resize
 window.onresize = () => {
   let newWindowWidth = window.innerWidth;
   const sidebar = document.querySelector(".sidebar");
@@ -123,6 +123,8 @@ window.onresize = () => {
     return;
   }
 };
+
+const editTaskModal = document.querySelector(".edit-task-modal");
 
 /**
  * Make task due date change color if within the week or tomorrow and make it say the actual day if within the week

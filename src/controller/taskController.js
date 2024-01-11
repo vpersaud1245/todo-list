@@ -6,6 +6,7 @@ import {
   clearProjectTaskList,
   removeTaskFromProject,
 } from "./projectController";
+import { renderEditTaskForm } from "../view/editTask";
 
 // CONVERT TASK OBJECT TO HTML ELEMENT
 export const convertTaskToHTML = (task) => {
@@ -67,6 +68,11 @@ export const convertTaskToHTML = (task) => {
   // APPEND TOGGLE COMPLETE BTN HANDLER
   toggleCompleteBtn.onclick = (e) => {
     handleToggleCompleteBtnClick(e);
+  };
+
+  // APPEND EVENT LISTENER TO EDIT TASKS
+  taskElement.onclick = (e) => {
+    renderEditTaskForm(e);
   };
 
   // APPEND ELEMENTS
@@ -228,7 +234,7 @@ export const compareTaskDate = (taskDate, dateToCompare) => {
  * @param {String} taskID
  * @returns {taskObject}
  */
-const getTaskByID = (taskID) => {
+export const getTaskByID = (taskID) => {
   let allTasks = getAllTasks();
   for (let i = 0; i < allTasks.length; i++) {
     let task = allTasks[i];

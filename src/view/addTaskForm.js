@@ -258,7 +258,7 @@ const createSubmitButtons = () => {
   return submitButtons;
 };
 
-const createProjectSelectorOption = (projectName) => {
+export const createProjectSelectorOption = (projectName) => {
   const projectOption = document.createElement("option");
   projectOption.value = projectName;
   projectOption.innerHTML = projectName;
@@ -329,7 +329,7 @@ export const validateForm = (requriedFieldValue) => {
   return false;
 };
 
-const reloadSectionDisplay = (displayedSectionName) => {
+export const reloadSectionDisplay = (displayedSectionName) => {
   if (displayedSectionName === "Today") {
     renderTodaySection();
     return;

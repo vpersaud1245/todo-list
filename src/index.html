@@ -92,7 +92,8 @@
     </aside>
 
     <!--  MAIN  -->
-    <main class="main"></main>
+    <main class="main">
+    </main>
 
     <!--  ADD PROJECT MODAL  -->
     <dialog class="add-project-modal">
@@ -148,5 +149,39 @@
         </form>
       </div>
     </dialog>
+
+    <!-- EDIT TASK MODAL -->
+    <div class="edit-task-modal">
+      <div class="edit-task-modal__header">
+        <button class="edit-task-modal__close-modal-btn">X</button>
+      </div>
+      <hr class="edit-task-modal__section-divider">
+      <form action="javascript:void(0);" class="edit-task-form">
+        <div class="edit-task__task-name-and-description">
+          <input class="edit-task__task-name"type="text" placeholder="Task Name">
+          <input class="edit-task__task-description" type="text" placeholder="Description">
+        </div>
+        <hr class="edit-task-modal__form-divider">
+        <div class="edit-task-form__form-item edit-task-form__form-item--project">
+          <img class="form-item__icon" src="<%= require('./assets/inbox-icon.svg') %>" alt="">
+          <select name="edit-task__select-project" class="edit-task__select-project"></select>
+          </div>
+        <hr class="edit-task-modal__form-divider">
+
+        <div class="edit-task-form__form-item">
+          <img class="form-item__icon" src="<%= require('./assets/calendar-icon.svg') %>" alt=""><input class="edit-task__select-due-date"type="date"></div>
+        <hr class="edit-task-modal__form-divider">
+        <div class="edit-task-form__form-item">
+          <img class="form-item__icon" src="<%= require('./assets/flag-icon.svg') %>" alt="">
+          <select class="edit-task__select-priority" name="edit-task__select-priority">
+            <option value="Priority">Priority</option>
+            <option value="Priority 1">Priority 1</option>
+            <option value="Priority 2">Priority 2</option>
+            <option value="Priority 3">Priority 3</option>
+            <option value="Priority 4">Priority 4</option>
+          </select>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
