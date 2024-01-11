@@ -808,3 +808,15 @@ video {
     margin: 0 auto;
   }
 }
+
+@media (min-width: 580px) {
+  .edit-task-modal {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 5px 10000px rgba(0, 0, 0, 0.6);
+    width: 90%;
+    height: 90vh;
+    max-width: 650px;
+  }
+}
