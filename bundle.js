@@ -1517,7 +1517,7 @@ const convertTaskToHTML = (task) => {
   };
 
   // APPEND EVENT LISTENER TO EDIT TASKS
-  taskElement.onclick = (e) => {
+  taskInfoElement.onclick = (e) => {
     (0,_view_editTask__WEBPACK_IMPORTED_MODULE_3__.renderEditTaskForm)(e);
   };
 
@@ -2770,7 +2770,7 @@ const renderEditTaskForm = (e) => {
   );
 
   // GET TASK OBJECT
-  let taskID = e.currentTarget.id;
+  let taskID = e.currentTarget.parentElement.id;
   let task = (0,_controller_taskController__WEBPACK_IMPORTED_MODULE_1__.getTaskByID)(taskID);
 
   // SET TASK NAME AND DESCRIPTION VALUES TO TASK VALUES
